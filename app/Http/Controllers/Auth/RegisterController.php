@@ -69,7 +69,15 @@ class RegisterController extends Controller
         ]);
     }
 
-    protected function show() {
-        return view('show', dd(request('username')));
+    protected function AddUser(array $data) {
+        DB::insert('insert into users (username, email, password) values (?,?,?)');
+        return view('index');
+    }
+
+    protected function show(array $data) {
+        foreach ($data as $value) {
+            echo $value;
+        }
+        return view('show');
     }
 }

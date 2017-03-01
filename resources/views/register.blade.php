@@ -2,7 +2,7 @@
 
 @section ('content')
     <h1>Register for RenterMelon</h1>
-    <form method="post" action="/validate">
+    <form method="post" action="/show">
         {{ csrf_field() }}
         <fieldset>
             <div>

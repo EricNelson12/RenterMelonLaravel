@@ -30,4 +30,4 @@ Route::get('/rentals', function () {
 
 // Route::post('/validate', 'Auth\RegisterController@validator');
 
-Route::post('/validate', 'Auth\RegisterController@show');
+

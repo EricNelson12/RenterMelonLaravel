@@ -1,6 +1,11 @@
 @extends ('layouts.master')
 
 @section ('content')
-    <?= $name; ?>
+    <?php
+        $users = DB::select('select * from users');
+        foreach ($users as $user) {
+            echo $user->username;
+        }
+    ?>
 
 @endsection
