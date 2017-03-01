@@ -12,9 +12,17 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
 });
 
 Route::get('/test', function () {
     return view('test');
 });
+
+Route::get('/register', function () {
+    return view('register');
+});
+
+// Route::post('/validate', 'Auth\RegisterController@validator');
+
+Route::post('/validate', 'Auth\RegisterController@show');
