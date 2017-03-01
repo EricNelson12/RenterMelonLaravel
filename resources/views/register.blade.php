@@ -2,28 +2,33 @@
 
 @section ('content')
     <h1>Register for RenterMelon</h1>
-    <form method="post" action="/register">
+    <form method="post" action="/validate">
         {{ csrf_field() }}
         <fieldset>
-            <label>Username</label>
-            <input type="text" name="username" />
-            <br/>
+            <div>
+                <label>Username</label>
+                <input type="text" name="username" />
+            </div>
 
-            <label>Email</label>
-            <input type="text" name="email" />
-            <br/>
+            <div>
+                <label>Email</label>
+                <input type="text" name="email" />
+            </div>
 
-            <label>Password</label>
-            <input type="password" name="password" />
-            <br/>
+            <div>
+                <label>Password</label>
+                <input type="password" name="password" />
+            </div>
 
-            <label>Confirm password</label>
-            <input type="password" name="confirm" />
-            <br/>
+            </div>
+                <label>Confirm password</label>
+                <input type="password" name="confirm" />
+            <div>
 
-            <label>I accept the <a href="#">Terms and Conditions</a></label>
-            <input type="checkbox" name="accept" />
-            <br />
+            <div>
+                <label>I accept the <a href="#">Terms and Conditions</a></label>
+                <input type="checkbox" name="accept" />
+            </div>
 
             <input type="submit" value="Submit" />
         </fieldset>
