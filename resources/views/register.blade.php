@@ -2,35 +2,29 @@
 
 @section ('content')
     <h1>Register for RenterMelon</h1>
-    <form method="post" action="/show">
-        {{ csrf_field() }}
-        <fieldset>
-            <div>
-                <label>Username</label>
-                <input type="text" name="username" />
-            </div>
+    {!! Form::open(array('action' => 'Auth\RegisterController@show')) !!}
+        {!! csrf_field() !!}
+        {!! Form::label('username', 'Username') !!}
+        {!! Form::text('username') !!}
+        <br/>
 
-            <div>
-                <label>Email</label>
-                <input type="text" name="email" />
-            </div>
+        {!! Form::label('email', 'Email address') !!}
+        {!! Form::email('email') !!}
+        <br/>
 
-            <div>
-                <label>Password</label>
-                <input type="password" name="password" />
-            </div>
+        {!! Form::label('password', 'Password') !!}
+        {!! Form::password('password') !!}
+        <br/>
 
-            </div>
-                <label>Confirm password</label>
-                <input type="password" name="confirm" />
-            <div>
+        {!! Form::label('confirm', 'Confirm password') !!}
+        {!! Form::password('confirm') !!}
+        <br/>
 
-            <div>
-                <label>I accept the <a href="#">Terms and Conditions</a></label>
-                <input type="checkbox" name="accept" />
-            </div>
+        {!! Form::label('accept', 'I accept the Terms and Conditions')!!}
+        {!! Form::checkbox('accept')!!}
+        <br/>
 
-            <input type="submit" value="Submit" />
-        </fieldset>
-    </form>
+        {!! Form::submit('Register') !!}
+
+    {!! Form::close() !!}
 @endsection

@@ -28,8 +28,9 @@ Route::get('/rentals', function () {
     return view('rentals');
 });
 
+// this routes form data:
+Route::post('/register', 'Auth\RegisterController@show');
+
 // Route::post('/validate', 'Auth\RegisterController@validator');
 
 // Route::post('/validate', 'Auth\RegisterController@show{data}');
-
-// Route::post('/show/{data}', 'Auth\RegisterController@show');
