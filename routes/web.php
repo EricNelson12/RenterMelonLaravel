@@ -25,6 +25,10 @@ Route::get('/register', function () {
 });
 
 Route::get('/rentals', 'RentalController@showRentals');
+Route::get('/rentals/pricedesc', 'RentalController@showPriceSortedDesc');
+Route::get('/rentals/priceasc', 'RentalController@showPriceSortedAsc');
+Route::get('/rentals/locdesc', 'RentalController@showPriceSortedAsc');
+Route::get('/rentals/locasc', 'RentalController@showPriceSortedAsc');
 
 // this routes register form data:
 Route::post('/register', 'Auth\RegisterController@show');

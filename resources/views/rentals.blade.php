@@ -10,9 +10,9 @@
         <table>
             <th></th>
             <th></th>
-            <th><b>Price</b></th>
+            <th><b>Price</b><a href="{{ url('/rentals/priceasc') }}">up </a><a href="{{ url('/rentals/pricedesc') }}">down</a></th>
             <th>Description</th>
-            <th>Area</th>
+            <th>Area<a href="{{ url('/rentals/locasc') }}">up </a><a href="{{ url('/rentals/locdesc') }}">down</a></th>
             <th>Address</th>
             <th>Original</th>
             <th>Posted on</th>
