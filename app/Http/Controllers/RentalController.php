@@ -11,6 +11,6 @@ class RentalController extends Controller
     function showRentals () {
         $rentals = DB::select('select title, price, description,
                                area, address, link, dateAdded from rental;');
-        return View::make("/rentals")->with(array('rentals'=>$rentals));
+        return View::make("rentals")->with(array('rentals'=>$rentals));
     }
 }
