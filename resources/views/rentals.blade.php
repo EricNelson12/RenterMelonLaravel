@@ -32,6 +32,7 @@
         <?php
             foreach ($rentals as $rental) {
                 echo '<tr><td>' . $rental->title . '</td>'
+                    .'<td>' . $rental->price . '</td>'
                     .'<td>' . $rental->description . '</td>'
                     .'<td>' . $rental->area . '</td>'
                     .'<td>' . $rental->address . '</td>'
