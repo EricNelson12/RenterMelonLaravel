@@ -10,7 +10,8 @@ class RentalController extends Controller
 {
     function showRentals () {
         $rentals = DB::select('select title, price, description,
-                               area, address, link, dateAdded from rental;');
-        return View::make("rentals")->with(array('rentals'=>$rentals));
+                               area, address, link from rental;');
+        $var = 5;
+        return view('rentals', ['rentals' => $rentals]);
     }
 }

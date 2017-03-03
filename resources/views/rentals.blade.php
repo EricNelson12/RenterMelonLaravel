@@ -7,9 +7,38 @@
 
   <body>
     <a href="{{ url('/') }}">Rentals List</a>
+        <table>
+            <th>
+
+            </th>
+            <th>
+                <b>Price</b>
+            </th>
+            <th>
+                Description
+            </th>
+            <th>
+                Area
+            </th>
+            <th>
+                Address
+            </th>
+            <th>
+
+            </th>
+            <th>
+                Posted
+            </th>
         <?php
-            echo $rentals;
+            foreach ($rentals as $rental) {
+                echo '<tr><td>' . $rental->title . '</td>'
+                    .'<td>' . $rental->description . '</td>'
+                    .'<td>' . $rental->area . '</td>'
+                    .'<td>' . $rental->address . '</td>'
+                    .'<td>' . $rental->link . '</td></tr>';
+            }
         ?>
+        </table>
     @section('content')
 
 
