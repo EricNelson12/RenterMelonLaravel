@@ -74,10 +74,12 @@ class RegisterController extends Controller
         return view('index');
     }
 
-    protected function show(array $data) {
-        foreach ($data as $value) {
-            echo $value;
-        }
-        return view('show');
+    protected function show() {
+        $registerData = Input::only('username', 'email');
+        return view('show', function() {
+            foreach ($registerData as $value) {
+                echo $value;
+            }
+        });
     }
 }
