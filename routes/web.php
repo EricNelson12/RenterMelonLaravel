@@ -24,11 +24,9 @@ Route::get('/register', function () {
     return view('register');
 });
 
-Route::get('/rentals', function () {
-    return view('rentals');
-});
+Route::get('/rentals', 'RentalController@showRentals');
 
-// this routes form data:
+// this routes register form data:
 Route::post('/register', 'Auth\RegisterController@show');
 
 // Route::post('/validate', 'Auth\RegisterController@validator');
