@@ -25,20 +25,10 @@ Route::get('/register', function () {
 });
 
 Route::get('/rentals', 'RentalController@showRentals');
-Route::get('/rentals/pricedesc', 'RentalController@showPriceSortedDesc');
-Route::get('/rentals/priceasc', 'RentalController@showPriceSortedAsc');
-Route::get('/rentals/locdesc', 'RentalController@showPriceSortedAsc');
-Route::get('/rentals/locasc', 'RentalController@showPriceSortedAsc');
+Route::get('/rentals/sorted/asc+{id}', 'RentalController@sortAsc');
+Route::get('/rentals/sorted/desc+{id}', 'RentalController@sortDesc');
 
-// this routes register form data:
-Route::post('/register', 'Auth\RegisterController@show');
-
-// Route::post('/validate', 'Auth\RegisterController@validator');
-
-// Route::post('/validate', 'Auth\RegisterController@show{data}');
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
-
-

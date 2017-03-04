@@ -15,35 +15,19 @@ class RentalController extends Controller
         return view('rentals', ['rentals' => $rentals]);
     }
 
-    function showPriceSortedDesc () {
+    function sortAsc ($sortType) {
       $rentals = DB::select('select title, price, description,
                              area, address, link, datedAdded
                              from rental
-                             order by price desc;');
+                             order by '. $sortType .' asc;');
       return view('rentals', ['rentals' => $rentals]);
     }
 
-    function showPriceSortedAsc () {
+    function sortDesc ($sortType) {
       $rentals = DB::select('select title, price, description,
                              area, address, link, datedAdded
                              from rental
-                             order by price asc;');
-      return view('rentals', ['rentals' => $rentals]);
-    }
-
-    function showLocSortedDesc () {
-      $rentals = DB::select('select title, price, description,
-                             area, address, link, datedAdded
-                             from rental
-                             order by area desc;');
-      return view('rentals', ['rentals' => $rentals]);
-    }
-
-    function showLocSortedAsc () {
-      $rentals = DB::select('select title, price, description,
-                             area, address, link, datedAdded
-                             from rental
-                             order by area asc;');
+                             order by '. $sortType .' desc;');
       return view('rentals', ['rentals' => $rentals]);
     }
 }

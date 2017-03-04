@@ -69,17 +69,4 @@ class RegisterController extends Controller
         ]);
     }
 
-    protected function AddUser(array $data) {
-        DB::insert('insert into users (username, email, password) values (?,?,?)');
-        return view('index');
-    }
-
-    protected function show() {
-        $registerData = Input::only('username', 'email');
-        return view('show', function() {
-            foreach ($registerData as $value) {
-                echo $value;
-            }
-        });
-    }
 }
