@@ -36,3 +36,9 @@ Route::post('/register', 'Auth\RegisterController@show');
 // Route::post('/validate', 'Auth\RegisterController@validator');
 
 // Route::post('/validate', 'Auth\RegisterController@show{data}');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index');
+
+

@@ -1,5 +1,4 @@
-@extends ('layouts.master')
-
+@extends ('layouts.app')
 @section ('content')
     <h1>Welcome to RenterMelon</h1>
     <p>

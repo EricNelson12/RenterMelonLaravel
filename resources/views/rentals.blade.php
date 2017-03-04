@@ -1,11 +1,5 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-  </head>
-
-  <body>
+@extends ('layouts.app')
+@section ('content')
     <a href="{{ url('/') }}">Rentals List</a>
         <table>
             <th></th>
@@ -37,5 +31,4 @@
             }
         ?>
         </table>
-  </body>
-</html>
+@endsection

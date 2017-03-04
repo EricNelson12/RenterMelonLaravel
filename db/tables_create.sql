@@ -1,3 +1,4 @@
+
 /* 
 
 SCHEMA:
@@ -7,13 +8,13 @@ SCHEMA:
 	Contact(rID, name, phone, email)
 	FK rID ref Rental(rID)
 
-	Users(username, pword, email, name, admin)
+	Users(id, pword, email, name, admin)
 
-	Report(desc, type, time, rID, username)
-	FK rID ref Rental(rID), FK username ref Users(username)
+	Report(desc, type, time, rID, id)
+	FK rID ref Rental(rID), FK id ref Users(id)
 
-	SavedAds(rID, username)
-	FK rID ref Rental(rID), FK username ref Users(username)
+	SavedAds(rID, id)
+	FK rID ref Rental(rID), FK id ref Users(id)
 
 
 
@@ -55,14 +56,15 @@ CREATE TABLE contact (
 
 
 CREATE TABLE users (
-
-	username VARCHAR(20),
-	password VARCHAR(20) NOT NULL,
-	email VARCHAR(30) NOT NULL,
-	isAdmin BOOLEAN DEFAULT FALSE,
-	PRIMARY KEY (username)
-
-);
+  id int(10) unsigned NOT NULL AUTO_INCREMENT,
+  name varchar(255)   NOT NULL,
+  email varchar(255)   NOT NULL,
+  password varchar(255) NOT NULL,
+  remember_token varchar(100) DEFAULT NULL,
+  created_at timestamp NULL DEFAULT NULL,
+  updated_at timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) 
 
 /*
 		Below here not used in release 1 but they seemed easy enough to have in here. 
@@ -71,13 +73,13 @@ CREATE TABLE users (
 
 CREATE TABLE savedAds ( 
 
-	username VARCHAR(20),
+	id VARCHAR(20),
 	rID INTEGER,
-	PRIMARY KEY (username,rID),
+	PRIMARY KEY (id,rID),
 	FOREIGN KEY (rID) REFERENCES rental(rID)
 		ON DELETE CASCADE 
 		ON UPDATE CASCADE, 
-	FOREIGN KEY (username) REFERENCES users(username)
+	FOREIGN KEY (id) REFERENCES users(id)
 		ON DELETE CASCADE 
 		ON UPDATE CASCADE 
 
@@ -86,16 +88,16 @@ CREATE TABLE savedAds (
 
 CREATE TABLE report ( 
 	
-	username VARCHAR(20),
+	id VARCHAR(20),
 	rID INTEGER,
 	timeAdded DATETIME DEFAULT CURRENT_TIMESTAMP,
 	reportType VARCHAR(25),
 	description VARCHAR(100),
-	PRIMARY KEY (username, timeAdded),
+	PRIMARY KEY (id, timeAdded),
 	FOREIGN KEY (rID) REFERENCES rental(rID)
 		ON DELETE CASCADE 
 		ON UPDATE CASCADE, 
-	FOREIGN KEY (username) REFERENCES users(username)
+	FOREIGN KEY (id) REFERENCES users(id)
 		ON DELETE CASCADE 
 		ON UPDATE CASCADE 
 
