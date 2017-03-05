@@ -32,3 +32,6 @@ Route::get('/rentals/sorted/desc+{id}', 'RentalController@sortDesc');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
+Route::get('/terms', function () {
+    return view('terms');
+});

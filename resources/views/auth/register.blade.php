@@ -59,14 +59,10 @@
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
                             </div>
                         </div>
-						<div class ="terms">
-						<p>
-						<h3> Terms and services</h3>
-by using rentermelon i agree to give the devs 100% on their cosc 310 project because we are awesome.
-					</p>
-						</div>
+
 						<div class ="termscheck">
-						<input type="checkbox" class="agree" name="TermsandServices" required>	 I Agree to the Terms and services
+						<input type="checkbox" class="agree" name="TermsandServices" required />
+                         I Agree to the <a href="{{ url('/terms') }}">Terms of Service</a>
                         </div>
 						<div class="form-group">
                             <div class="col-md-6 col-md-offset-4">

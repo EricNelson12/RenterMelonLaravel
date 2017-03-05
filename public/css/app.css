@@ -13,12 +13,13 @@
 display: inline;
 	}
 .terms {
-  margin-left: auto;
+	padding: 0 1em 0 1em;
+    margin-left: auto;
     margin-right: auto;
     width: 40em;
 	height: 10em;
 	overflow: auto;
-    border: 1px solid black;
+    border: 1px solid #c3c3c3;
 }
 .termscheck {
   margin-left: 6em;
