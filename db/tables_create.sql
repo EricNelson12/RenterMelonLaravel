@@ -31,7 +31,7 @@ CREATE TABLE rental (
 	price DECIMAL(7,2) NOT NULL,
 	description VARCHAR(400),
 	area VARCHAR(20),
-	address VARCHAR(50),
+	address VARCHAR(70),
 	link VARCHAR(200),
 	datedAdded DATETIME DEFAULT CURRENT_TIMESTAMP, 
 	PRIMARY KEY (rID)
@@ -63,7 +63,7 @@ CREATE TABLE users (
   remember_token varchar(100) DEFAULT NULL,
   created_at timestamp NULL DEFAULT NULL,
   updated_at timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (id)
 ) 
 
 /*
