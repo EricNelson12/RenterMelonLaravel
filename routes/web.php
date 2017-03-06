@@ -27,7 +27,7 @@ Route::get('/register', function () {
 Route::get('/rentals', 'RentalController@showRentals');
 Route::get('/rentals/sorted/asc+{id}', 'RentalController@sortAsc');
 Route::get('/rentals/sorted/desc+{id}', 'RentalController@sortDesc');
-
+Route::get('/rentals/rental/{id}', 'RentalController@showRental');
 
 Auth::routes();
 

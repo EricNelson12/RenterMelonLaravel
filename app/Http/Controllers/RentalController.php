@@ -9,25 +9,30 @@ use DB;
 class RentalController extends Controller
 {
     function showRentals () {
-        $rentals = DB::select('select title, price, description,
-                               area, address, link, datedAdded from rental;');
-        $var = 5;
+        $rentals = DB::select('select * from rental;');
         return view('rentals', ['rentals' => $rentals]);
     }
 
+    function showRental ($rID) {
+        $rental = DB::select('select title, price, description,
+                              area, address, link, datedAdded
+                              from rental where rID = ' . $rID . ';');
+        return view('rentals.rental');
+    }
+
     function sortAsc ($sortType) {
-      $rentals = DB::select('select title, price, description,
-                             area, address, link, datedAdded
+      $rentals = DB::select('select *
                              from rental
                              order by '. $sortType .' asc;');
-      return view('rentals', ['rentals' => $rentals]);
+      $sorted = true;
+      return view('rentals', ['rentals' => $rentals, 'sorted' => true]);
     }
 
     function sortDesc ($sortType) {
-      $rentals = DB::select('select title, price, description,
-                             area, address, link, datedAdded
+      $rentals = DB::select('select *
                              from rental
                              order by '. $sortType .' desc;');
-      return view('rentals', ['rentals' => $rentals]);
+      $sorted = true;
+      return view('rentals', ['rentals' => $rentals, 'sorted' => true]);
     }
 }
