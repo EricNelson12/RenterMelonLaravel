@@ -10,14 +10,14 @@ class RentalController extends Controller
 {
     function showRentals () {
         $rentals = DB::select('select * from rental;');
-        return view('rentals', ['rentals' => $rentals]);
+        return view('rentals', ['rentals' => $rentals, 'sorted' => false]);
     }
 
     function showRental ($rID) {
         $rental = DB::select('select title, price, description,
                               area, address, link, datedAdded
                               from rental where rID = ' . $rID . ';');
-        return view('rentals.rental');
+        return view('rentals.rental', ['rental' => $rental]);
     }
 
     function sortAsc ($sortType) {

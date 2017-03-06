@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
+Route::get('/', 'RentalController@showRentals');
 
 
 Route::get('/test', function () {

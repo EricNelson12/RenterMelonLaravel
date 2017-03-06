@@ -1,6 +1,6 @@
 @extends ('layouts.app')
 @section ('content')
-        <table>
+        <table id="maintable">
             <th></th>
             <th></th>
             <th><b>Price</b><a href="{{ url('/rentals/sorted/asc+price') }}">&#9652;</a>
@@ -14,6 +14,7 @@
             <?php
                 foreach ($rentals as $rental) {
                     if ($sorted == true) {
+                        // image would be the first item in each row
                         echo '<tr><td></td><td><a href="../../rentals/rental/';
                     } else {
                         echo '<tr><td></td><td><a href="/rentals/rental/';

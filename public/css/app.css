@@ -25,10 +25,27 @@ display: inline;
   margin-left: 6em;
   height: 5em;
 }
+
+#maintable {
+	width: 80%;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#rentaldetails {
+	margin-left: 2em;
+	width: 40%;
+}
+
+#rentaldesc {
+	margin: 2em 0 0 2em;
+	width: 80%;
+}
+
 td {
 	padding: 0.5em 2em 0.5em 2em;
 	text-align: left;
 }
-.addesc {
+tr {
 	border-bottom: 1px solid #d1d1d1;
 }
