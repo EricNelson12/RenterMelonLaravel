@@ -18,7 +18,7 @@
                 <tr><th>Address</th>
                     <td>' . $rent->address . '</td></tr>
                 <tr><th>Date added</th>
-                    <td>' . $rent->datedAdded . '</td></tr></table>';
+                    <td>' . $rent->dateAdded . '</td></tr></table>';
                 echo
                     "<p id=\"rentaldesc\">$rent->description</p>";
             }

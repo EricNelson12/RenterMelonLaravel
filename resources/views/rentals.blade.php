@@ -9,8 +9,8 @@
                     <a href="{{ url('/rentals/sorted/desc+area') }}">&#9662;</a></th>
             <th>Address</th>
             <th>Original</th>
-            <th>Posted on<a href="{{ url('/rentals/sorted/asc+datedAdded') }}">&#9652;</a>
-                    <a href="{{ url('/rentals/sorted/desc+datedAdded') }}">&#9662;</a></th>
+            <th>Posted on<a href="{{ url('/rentals/sorted/asc+dateAdded') }}">&#9652;</a>
+                    <a href="{{ url('/rentals/sorted/desc+dateAdded') }}">&#9662;</a></th>
             <?php
                 foreach ($rentals as $rental) {
                     if ($sorted == true) {
@@ -24,16 +24,16 @@
                         .'<td>' . $rental->area . '</td>'
                         .'<td>' . $rental->address . '</td>'
                         .'<td><a href="' . $rental->link . '">';
-                        if (strpos($rental->link, "craigslist")) {
-                          echo "On Craigslist";
-                        } elseif (strpos($rental->link, "kijiji")) {
-                          echo "On Kijiji";
-                        } elseif (strpos($rental->link, "castanet")) {
-                          echo "On Castanet";
+                        if (strpos($rental->link, "craigslist")!== false) {
+                          echo "Craigslist";
+                        } elseif (strpos($rental->link, "kijiji")!== false) {
+                          echo "Kijiji";
+                        } elseif (strpos($rental->link, "castanet")!== false) {
+                          echo "Castanet";
                         } else {
                           echo "Original";
                         }
-                    echo '</a></td><td> ' . $rental->datedAdded . ' </td></tr>';
+                    echo '</a></td><td> ' . $rental->dateAdded . ' </td></tr>';
                 }
             ?>
         </table>
