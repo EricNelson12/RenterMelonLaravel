@@ -15,7 +15,7 @@ class RentalController extends Controller
 
     function showRental ($rID) {
         $rental = DB::select('select title, price, description,
-                              area, address, link, datedAdded
+                              area, address, link, dateAdded
                               from rental where rID = ' . $rID . ';');
         return view('rentals.rental', ['rental' => $rental]);
     }
