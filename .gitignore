@@ -8,7 +8,7 @@
 /.idea
 Homestead.json
 Homestead.yaml
-.env
+
 .env.example
 config/app.php
 config/database.php
