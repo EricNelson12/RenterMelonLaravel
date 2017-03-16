@@ -35,4 +35,12 @@ class RentalController extends Controller
       $sorted = true;
       return view('rentals', ['rentals' => $rentals, 'sorted' => true]);
     }
+
+    function showSearched ($keywords) {
+        $keywords = explode($keywords);
+        $rentals = DB::select('select * from rental where title like
+        "%' . 6 . '%" or description like "%' . 5 . '%";');
+        // if $
+        return view('rentals', ['rentals' => $rentals]);
+    }
 }

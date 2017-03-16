@@ -11,7 +11,9 @@
 |
 */
 
-Route::get('/', 'RentalController@showRentals');
+Route::get('/', function () {
+    return view('index');
+});
 
 
 Route::get('/test', function () {
@@ -33,3 +35,4 @@ Route::get('/home', 'HomeController@index');
 Route::get('/terms', function () {
     return view('terms');
 });
+Route::get('/rentals/search/{terms}', 'RentalController@showSeached');
