@@ -24,10 +24,12 @@ Route::get('/register', function () {
     return view('register');
 });
 
+// routes for returning rental views
 Route::get('/rentals', 'RentalController@showRentals');
 Route::get('/rentals/sorted/asc+{id}', 'RentalController@sortAsc');
 Route::get('/rentals/sorted/desc+{id}', 'RentalController@sortDesc');
 Route::get('/rentals/rental/{id}', 'RentalController@showRental');
+Route::get('/rentals/search?{keywords}', 'RentalController@showSearched');
 
 Auth::routes();
 
@@ -35,4 +37,3 @@ Route::get('/home', 'HomeController@index');
 Route::get('/terms', function () {
     return view('terms');
 });
-Route::get('/rentals/search/{terms}', 'RentalController@showSeached');

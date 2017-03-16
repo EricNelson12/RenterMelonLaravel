@@ -37,10 +37,17 @@ class RentalController extends Controller
     }
 
     function showSearched ($keywords) {
-        $keywords = explode($keywords);
-        $rentals = DB::select('select * from rental where title like
-        "%' . 6 . '%" or description like "%' . 5 . '%";');
-        // if $
+        $keywords = explode(" ", $keywords);
+        $sql = 'select * from rental where title like
+        "%' . $keywords[0] . '%" or description like "%' . $keywords[0] . '%" ';
+        // append the SQL statement if there is more than one keyword
+        if ( sizeof($keywords) > 1 ) {
+            for ($i = 1; $i < sizeof($keywords); $i++) {
+                $sql .= 'or title like "%' . $keywords[$i]
+                . '%" or description like "%' . $keywords[$i] . '%"';
+            }
+        }
+        $rentals = DB::select($sql);
         return view('rentals', ['rentals' => $rentals]);
     }
 }

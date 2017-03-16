@@ -53,3 +53,8 @@ tr {
 body {
 	font-family: arial;
 }
+
+#searchbar {
+	margin: 1em auto 2em auto;
+	width: 60%;
+}

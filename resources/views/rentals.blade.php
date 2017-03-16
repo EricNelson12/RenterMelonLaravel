@@ -1,9 +1,12 @@
 @extends ('layouts.app')
 @section ('content')
 
-    <form id="searchbar" method="GET" href={{ link_to_action('RentalController@showSearched') }}>
-        <input type=text name=keywords />
-        <input type="submit" value="Search"/>
+    <form class="form-horizontal" id="searchbar" method="GET" action="{{ link_to_route ('rentals.search', $keywords) }}">
+        <div class="form-group">
+            <label>Search:</label>
+            <input class="form-control" type=text name=keywords />
+        </div>
+            <input class="btn btn-primary" type="submit" value="Search"/>
     </form>
     <table id="maintable">
         <th></th>
@@ -30,11 +33,11 @@
                     .'<td>' . $rental->area . '</td>'
                     .'<td>' . $rental->address . '</td>'
                     .'<td><a href="' . $rental->link . '">';
-                    if (strpos($rental->link, "craigslist")!== false) {
+                    if (strpos($rental->link, "craigslist") !== false) {
                       echo "Craigslist";
-                    } elseif (strpos($rental->link, "kijiji")!== false) {
+                    } elseif (strpos($rental->link, "kijiji") !== false) {
                       echo "Kijiji";
-                    } elseif (strpos($rental->link, "castanet")!== false) {
+                    } elseif (strpos($rental->link, "castanet") !== false) {
                       echo "Castanet";
                     } else {
                       echo "Original";
