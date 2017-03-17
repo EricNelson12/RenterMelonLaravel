@@ -2,7 +2,7 @@
 @section ('content')
 
     <form class="form-horizontal" id="searchbar" method="POST" action="
-    {{-- {{ link_to_route ('rentals', $keywords) }} --}}
+    {{ link_to_route ('rentals/search?', $keywords) }}
     ">
         <div class="form-group">
             <label>Search:</label>
@@ -13,24 +13,25 @@
     <table id="maintable">
         <th></th>
         <th></th>
-        <th><b>Price</b><a href="{{ url('/rentals/{sorted+asc+area}') }}">&#9652;</a>
-                        <a href="{{ url('/rentals/{sorted+desc+area}') }}">&#9662;</a></th>
-        <th>Area<a href="{{ url('/rentals/sorted/asc+area') }}">&#9652;</a>
-                <a href="{{ url('/rentals/sorted/desc+area') }}">&#9662;</a></th>
+        <th><b>Price</b><a href="{{ url('/rentals/sorted/price+asc') }}">&#9652;</a>
+                        <a href="{{ url('/rentals/sorted/price+desc') }}">&#9662;</a></th>
+        <th>Area<a href="{{ url('/rentals/sorted/area+asc') }}">&#9652;</a>
+                <a href="{{ url('/rentals/sorted/area+desc') }}">&#9662;</a></th>
         <th>Address</th>
         <th>Original</th>
-        <th>Posted on<a href="{{ url('/rentals/sorted/asc+dateAdded') }}">&#9652;</a>
-                    <a href="{{ url('/rentals/sorted/desc+dateAdded') }}">&#9662;</a></th>
+        <th>Posted on<a href="{{ url('/rentals/sorted/dateAdded+asc') }}">&#9652;</a>
+                    <a href="{{ url('/rentals/sorted/dateAdded+desc') }}">&#9662;</a></th>
         <?php
             // this loops through each rental and display its information in tabular form
             foreach ($rentals as $rental) {
                 // if ($sorted == true) {
-                //     // TODO: put thumbnail in first cell
+                //     // TODO: put thumbnail in first cell if you can find it ;)
                 //     echo '<tr><td></td><td><a href="../../rentals/rental/';
                 // } else {
-                    echo '<tr><td></td><td><a href="/rentals/rental/';
-                // }
-                echo $rental->rID . '">' . $rental->title
+                    ?> '<tr><td></td><td><a href="/rentals/rental/<?=$rental->rID?>">
+                <?php
+
+                echo $rental->title
                     .'</a></td><td>$' . $rental->price . '</td>'
                     .'<td>' . $rental->area . '</td>'
                     .'<td>' . $rental->address . '</td>'

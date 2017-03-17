@@ -26,9 +26,8 @@ Route::get('/register', function () {
 
 // routes for returning rental views
 Route::get('/rentals', 'RentalController@showRentals');
-Route::post('/rentals/{sorted+asc+area}', 'RentalController@sortAsc');
-Route::post('/rentals', 'RentalController@sortDesc');
-Route::post('/rentals/rental/{id}', 'RentalController@showRental');
+Route::get('/rentals/sorted/{type}+{order}', ['uses' => 'RentalController@showSorted']);
+Route::get('/rentals/rental/{id}', 'RentalController@showRental');
 Route::post('/rentals/search?{keywords}', 'RentalController@showSearched');
 
 Auth::routes();
