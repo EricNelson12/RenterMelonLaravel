@@ -21,19 +21,19 @@ class RentalController extends Controller
     }
 
     function sortAsc ($sortType) {
-      $rentals = DB::select('select *
+        $rentals = DB::select('select *
                              from rental
                              order by '. $sortType .' asc;');
-      $sorted = true;
-      return view('rentals', ['rentals' => $rentals, 'sorted' => true]);
+        $sorted = true;
+        return view('rentals', ['rentals' => $rentals, 'sorted' => true]);
     }
 
     function sortDesc ($sortType) {
-      $rentals = DB::select('select *
+        $rentals = DB::select('select *
                              from rental
                              order by '. $sortType .' desc;');
-      $sorted = true;
-      return view('rentals', ['rentals' => $rentals, 'sorted' => true]);
+        $sorted = true;
+        return view('rentals', ['rentals' => $rentals, 'sorted' => true]);
     }
 
     function showSearched ($keywords) {

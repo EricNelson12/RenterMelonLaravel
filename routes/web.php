@@ -26,10 +26,10 @@ Route::get('/register', function () {
 
 // routes for returning rental views
 Route::get('/rentals', 'RentalController@showRentals');
-Route::get('/rentals/sorted/asc+{id}', 'RentalController@sortAsc');
-Route::get('/rentals/sorted/desc+{id}', 'RentalController@sortDesc');
-Route::get('/rentals/rental/{id}', 'RentalController@showRental');
-Route::get('/rentals/search?{keywords}', 'RentalController@showSearched');
+Route::post('/rentals/{sorted+asc+area}', 'RentalController@sortAsc');
+Route::post('/rentals', 'RentalController@sortDesc');
+Route::post('/rentals/rental/{id}', 'RentalController@showRental');
+Route::post('/rentals/search?{keywords}', 'RentalController@showSearched');
 
 Auth::routes();
 

@@ -1,7 +1,9 @@
 @extends ('layouts.app')
 @section ('content')
 
-    <form class="form-horizontal" id="searchbar" method="GET" action="{{ link_to_route ('rentals.search', $keywords) }}">
+    <form class="form-horizontal" id="searchbar" method="POST" action="
+    {{-- {{ link_to_route ('rentals', $keywords) }} --}}
+    ">
         <div class="form-group">
             <label>Search:</label>
             <input class="form-control" type=text name=keywords />
@@ -11,8 +13,8 @@
     <table id="maintable">
         <th></th>
         <th></th>
-        <th><b>Price</b><a href="{{ url('/rentals/sorted/asc+price') }}">&#9652;</a>
-                        <a href="{{ url('/rentals/sorted/desc+price') }}">&#9662;</a></th>
+        <th><b>Price</b><a href="{{ url('/rentals/{sorted+asc+area}') }}">&#9652;</a>
+                        <a href="{{ url('/rentals/{sorted+desc+area}') }}">&#9662;</a></th>
         <th>Area<a href="{{ url('/rentals/sorted/asc+area') }}">&#9652;</a>
                 <a href="{{ url('/rentals/sorted/desc+area') }}">&#9662;</a></th>
         <th>Address</th>
@@ -20,14 +22,14 @@
         <th>Posted on<a href="{{ url('/rentals/sorted/asc+dateAdded') }}">&#9652;</a>
                     <a href="{{ url('/rentals/sorted/desc+dateAdded') }}">&#9662;</a></th>
         <?php
-            // loop through each rental and display its information in tabular form
+            // this loops through each rental and display its information in tabular form
             foreach ($rentals as $rental) {
-                if ($sorted == true) {
-                    // thumbnail would be the first item in each row
-                    echo '<tr><td></td><td><a href="../../rentals/rental/';
-                } else {
+                // if ($sorted == true) {
+                //     // TODO: put thumbnail in first cell
+                //     echo '<tr><td></td><td><a href="../../rentals/rental/';
+                // } else {
                     echo '<tr><td></td><td><a href="/rentals/rental/';
-                }
+                // }
                 echo $rental->rID . '">' . $rental->title
                     .'</a></td><td>$' . $rental->price . '</td>'
                     .'<td>' . $rental->area . '</td>'
