@@ -8,20 +8,20 @@ use DB;
 
 class RentalController extends Controller
 {
-    function showRentals (Request $request) {
+    function showRentals (Request $search, Request $sort, Request $filter) {
+        // TODO: select max and min size and price for sliders
         $sql = 'select * from rental ';
-
         // check if there was a get request
-        if ($request !== null) {
+        if ($search !== null || $sort !== null) {
             // check if there was a search in the get request
-            if ($request->input('search') !== null) {
-                $search = $request->input('search');
+            if ($search->input('search') !== null) {
+                $search = $search->input('search');
                 $search = explode(' ', $search);
                 $sql .= $this->appendSearch($sql, $search);
             }
             // check if there was a sort in the get request
-            if ($request->input('sort') !== null) {
-                $sort = $request->input('sort');
+            if ($sort->input('sort') !== null) {
+                $sort = $sort->input('sort');
                 $sort = explode(' ', $sort);
                 $sql .= $this->appendSort($sql, $sort);
             }
@@ -40,7 +40,7 @@ class RentalController extends Controller
     function appendSearch ($sql, $keywords) {
         $sql = ' where title like
         "%' . $keywords[0] . '%" or description like "%' . $keywords[0] . '%" ';
-        // append the SQL statement if there is more than one keyword
+        // append the SQL statement if there is more than one keyword for each word
         if ( sizeof($keywords) > 1 ) {
             for ($i = 1; $i < sizeof($keywords); $i++) {
                 $sql .= 'or title like "%' . $keywords[$i]

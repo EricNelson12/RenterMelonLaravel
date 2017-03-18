@@ -2,6 +2,6 @@
 @section ('content')
     <h1>Welcome to RenterMelon</h1>
     <p>
-        <a href="{{ url('/rentals') }}">Rentals List</a>
+        <a class="btn btn-primary" href="{{ url('/rentals') }}"/>View list of rentals</a>
     </p>
 @endsection

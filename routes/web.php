@@ -20,10 +20,8 @@ Route::get('/test', function () {
     return view('test');
 });
 
-
-
 // routes for returning rental views
-Route::get('/rentals/{request?}', 'RentalController@showRentals');
+Route::get('/rentals/{search?}{sort?}{filter?}', 'RentalController@showRentals');
 Route::get('/rental/{id}', 'RentalController@showRental');
 
 Auth::routes();

@@ -13,7 +13,7 @@
         <!-- Styles -->
         <style>
             html, body {
-                background-color: blue;
+                background-color: #fff;
                 color: #636b6f;
                 font-family: 'Raleway', sans-serif;
                 font-weight: 100;
@@ -79,9 +79,9 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel
+                    RenterMelon
                 </div>
-
+                <?php print_r($rentals); ?>
                 <div class="links">
                     <a href="https://laravel.com/docs">Documentation</a>
                     <a href="https://laracasts.com">Laracasts</a>

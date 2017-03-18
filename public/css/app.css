@@ -43,7 +43,7 @@ display: inline;
 }
 
 td {
-	padding: 0.5em 2em 0.5em 2em;
+	padding: 1em 2em 1em 2em;
 	text-align: left;
 }
 tr {
@@ -57,4 +57,10 @@ body {
 #searchbar {
 	margin: 1em auto 2em auto;
 	width: 60%;
+	max-width: 50em;
+}
+
+#filter {
+	float: left;
+	padding: 1em;
 }
