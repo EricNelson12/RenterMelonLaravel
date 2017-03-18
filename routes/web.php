@@ -23,7 +23,7 @@ Route::get('/test', function () {
 
 
 // routes for returning rental views
-Route::get('/rentals/{request?}', 'RentalController@showRentals')->where();
+Route::get('/rentals/{request?}', 'RentalController@showRentals');
 Route::get('/rental/{id}', 'RentalController@showRental');
 
 Auth::routes();

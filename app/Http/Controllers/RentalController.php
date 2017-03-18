@@ -42,7 +42,6 @@ class RentalController extends Controller
         "%' . $keywords[0] . '%" or description like "%' . $keywords[0] . '%" ';
         // append the SQL statement if there is more than one keyword
         if ( sizeof($keywords) > 1 ) {
-            $keywords = explode(" ", $keywords);
             for ($i = 1; $i < sizeof($keywords); $i++) {
                 $sql .= 'or title like "%' . $keywords[$i]
                 . '%" or description like "%' . $keywords[$i] . '%"';
