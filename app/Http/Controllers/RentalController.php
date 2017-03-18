@@ -8,41 +8,53 @@ use DB;
 
 class RentalController extends Controller
 {
-    function showRentals ($sort=false, $type=null, $order=null, $keywords=null) {
-        $sql = 'select * from rental';
-        if ($sort !== false) {
-            $sql .= ' order by '. $type .' '. $order;
+    function showRentals (Request $request) {
+        $sql = 'select * from rental ';
+
+        // check if there was a get request
+        if ($request !== null) {
+            // check if there was a search in the get request
+            if ($request->input('search') !== null) {
+                $search = $request->input('search');
+                $search = explode(' ', $search);
+                $sql .= $this->appendSearch($sql, $search);
+            }
+            // check if there was a sort in the get request
+            if ($request->input('sort') !== null) {
+                $sort = $request->input('sort');
+                $sort = explode(' ', $sort);
+                $sql .= $this->appendSort($sql, $sort);
+            }
         }
         $rentals = DB::select($sql);
         return view('rentals', ['rentals' => $rentals, 'sorted' => false]);
     }
 
-    function showRental ($rID) {
-        $sql = 'select * from rental where rID = ' . $rID;
-        $rental = DB::select($sql);
-        return view('rentals.rental', ['rental' => $rental]);
+    // A helper method for appending a sort to the base SQL
+    function appendSort ($sql, $sort) {
+        $sql = ' order by ' . $sort[0] . ' ' . $sort[1];
+        return $sql;
     }
 
-    function showSorted ($type, $order) {
-        $rentals = DB::select('select *
-                             from rental
-                             order by '. $type .' '. $order);
-        $sorted = true;
-        return view('rentals', ['rentals' => $rentals, 'sorted' => true]);
-    }
-
-    function showSearched ($keywords) {
-        $keywords = explode(" ", $keywords);
-        $sql = 'select * from rental where title like
+    // A helper method for appending a search to the base SQL
+    function appendSearch ($sql, $keywords) {
+        $sql = ' where title like
         "%' . $keywords[0] . '%" or description like "%' . $keywords[0] . '%" ';
         // append the SQL statement if there is more than one keyword
         if ( sizeof($keywords) > 1 ) {
+            $keywords = explode(" ", $keywords);
             for ($i = 1; $i < sizeof($keywords); $i++) {
                 $sql .= 'or title like "%' . $keywords[$i]
                 . '%" or description like "%' . $keywords[$i] . '%"';
             }
         }
-        $rentals = DB::select($sql);
-        return view('rentals', ['rentals' => $rentals]);
+        return $sql;
+    }
+
+    // Take the user to a single rental page
+    function showRental ($rID) {
+        $sql = 'select * from rental where rID = ' . $rID;
+        $rental = DB::select($sql);
+        return view('rentals.rental', ['rental' => $rental]);
     }
 }

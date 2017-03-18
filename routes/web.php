@@ -20,15 +20,11 @@ Route::get('/test', function () {
     return view('test');
 });
 
-Route::get('/register', function () {
-    return view('register');
-});
+
 
 // routes for returning rental views
-Route::get('/rentals', 'RentalController@showRentals');
-Route::get('/rentals/sorted/{type}+{order}', ['uses' => 'RentalController@showSorted']);
-Route::get('/rentals/rental/{id}', 'RentalController@showRental');
-Route::post('/rentals/search?{keywords}', 'RentalController@showSearched');
+Route::get('/rentals/{request?}', 'RentalController@showRentals')->where();
+Route::get('/rental/{id}', 'RentalController@showRental');
 
 Auth::routes();
 
