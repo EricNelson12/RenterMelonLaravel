@@ -30,3 +30,5 @@ Route::get('/home', 'HomeController@index');
 Route::get('/terms', function () {
     return view('terms');
 });
+
+Route::get('/report?{rid}', 'RentalController@reportScam');

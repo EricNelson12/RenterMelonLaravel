@@ -10,7 +10,7 @@ class RentalController extends Controller
 {
     function showRentals () {
         // TODO: select max and min size and price for sliders
-        $sql = 'select * from rental ';
+        // $sql = 'select * from rental ';
         // // check if there was a get request
         // if (Request::get('search') !== null || Request::get('sort') !== null) {
         //     // check if there was a search in the get request
@@ -28,7 +28,7 @@ class RentalController extends Controller
         //         $sql .= $this->appendSort($sort);
         //     }
         // }
-        $rentals = DB::select($sql);
+        $rentals = DB::table('rental')->get();
         return view('rentals', ['rentals' => $rentals]);
     }
 
@@ -54,8 +54,12 @@ class RentalController extends Controller
 
     // Take the user to a single rental page
     function showRental ($rID) {
-        $sql = 'select * from rental where rID = ' . $rID;
-        $rental = DB::select($sql);
+        $rental = DB::table('rental')->where('rID', $rID)->first();
         return view('rentals.rental', ['rental' => $rental]);
+    }
+
+    // TODO: make a function that adds scams to a the report table
+    function reportScam ($rID) {
+        $sql = '';
     }
 }

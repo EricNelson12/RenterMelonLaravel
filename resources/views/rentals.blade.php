@@ -80,7 +80,7 @@
                 }
                 ?></a></td>
                 <td class="dateadded"><?=$rental->dateAdded;?></td>
-                <td></td>
+                <td><a href="report/<?=$rental->rID?>">Report</a></td>
             </tr>
             <?php } ?>
         </tbody>
