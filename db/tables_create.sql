@@ -1,5 +1,5 @@
 
-/* 
+/*
 
 SCHEMA:
 
@@ -19,21 +19,21 @@ SCHEMA:
 
 
 
-*/ 
+*/
 
 
 
 
 CREATE TABLE rental (
 
-	rID INTEGER AUTO_INCREMENT, 
+	rID INTEGER AUTO_INCREMENT,
 	title VARCHAR(50) NOT NULL,
 	price DECIMAL(7,2) NOT NULL,
 	description VARCHAR(400),
 	area VARCHAR(20),
 	address VARCHAR(70),
 	link VARCHAR(200),
-	datedAdded DATETIME DEFAULT CURRENT_TIMESTAMP, 
+	datedAdded DATETIME DEFAULT CURRENT_TIMESTAMP,
 	PRIMARY KEY (rID)
 
 
@@ -42,15 +42,15 @@ CREATE TABLE rental (
 );
 
 CREATE TABLE contact (
-	
+
 	rID INTEGER,
 	name VARCHAR(30),
 	phone VARCHAR(15),
 	email VARCHAR(30),
 	PRIMARY KEY (rID, name),
 	FOREIGN KEY (rID) REFERENCES rental(rID)
-		ON DELETE CASCADE 
-		ON UPDATE CASCADE 
+		ON DELETE CASCADE
+		ON UPDATE CASCADE
 
 );
 
@@ -63,31 +63,32 @@ CREATE TABLE users (
   remember_token varchar(100) DEFAULT NULL,
   created_at timestamp NULL DEFAULT NULL,
   updated_at timestamp NULL DEFAULT NULL,
+  isAdmin tinyint(1),
   PRIMARY KEY (id)
-) 
+)
 
 /*
-		Below here not used in release 1 but they seemed easy enough to have in here. 
+		Below here not used in release 1 but they seemed easy enough to have in here.
 */
 
 
-CREATE TABLE savedAds ( 
+CREATE TABLE savedAds (
 
 	id VARCHAR(20),
 	rID INTEGER,
 	PRIMARY KEY (id,rID),
 	FOREIGN KEY (rID) REFERENCES rental(rID)
-		ON DELETE CASCADE 
-		ON UPDATE CASCADE, 
+		ON DELETE CASCADE
+		ON UPDATE CASCADE,
 	FOREIGN KEY (id) REFERENCES users(id)
-		ON DELETE CASCADE 
-		ON UPDATE CASCADE 
+		ON DELETE CASCADE
+		ON UPDATE CASCADE
 
 
 );
 
-CREATE TABLE report ( 
-	
+CREATE TABLE report (
+
 	id VARCHAR(20),
 	rID INTEGER,
 	timeAdded DATETIME DEFAULT CURRENT_TIMESTAMP,
@@ -95,10 +96,10 @@ CREATE TABLE report (
 	description VARCHAR(100),
 	PRIMARY KEY (id, timeAdded),
 	FOREIGN KEY (rID) REFERENCES rental(rID)
-		ON DELETE CASCADE 
-		ON UPDATE CASCADE, 
+		ON DELETE CASCADE
+		ON UPDATE CASCADE,
 	FOREIGN KEY (id) REFERENCES users(id)
-		ON DELETE CASCADE 
-		ON UPDATE CASCADE 
+		ON DELETE CASCADE
+		ON UPDATE CASCADE
 
 );

@@ -32,3 +32,7 @@ Route::get('/terms', function () {
 });
 
 Route::get('/report?{rid}', 'RentalController@reportScam');
+
+Route::get('admin', ['middleware' => ['auth', 'admin'], function() {
+    return view('admin');
+}]);
