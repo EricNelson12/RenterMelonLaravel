@@ -83,5 +83,13 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
+    <script src="{{ url('http://listjs.com/assets/javascripts/list.min.js') }}"></script>
+    <script>
+        var options = {
+            valueNames: [ 'rentalimage', 'individualrental', 'rentalprice', 'rentalarea', 'rentaladdress' , 'originalad', 'dateAdded' ]
+        };
+        console.log(options);
+        var rentalList = new List('rentals', options);
+    </script>
 </body>
 </html>

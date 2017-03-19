@@ -21,8 +21,8 @@ Route::get('/test', function () {
 });
 
 // routes for returning rental views
-Route::get('/rentals/{search?}{sort?}{filter?}', 'RentalController@showRentals');
-Route::get('/rental/{id}', 'RentalController@showRental');
+Route::get('rentals/', 'RentalController@showRentals');
+Route::get('rental/{id}', 'RentalController@showRental');
 
 Auth::routes();
 
