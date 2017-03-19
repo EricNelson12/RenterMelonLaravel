@@ -62,5 +62,11 @@ body {
 
 #filter {
 	float: left;
-	padding: 1em;
+	margin-left: 0.5em;
+	padding: .5em;
+	border: 1px solid #d1d1d1;
+}
+
+#filter * {
+	border: none;
 }
