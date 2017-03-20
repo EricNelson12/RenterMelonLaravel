@@ -8,7 +8,7 @@
                     <div class="panel-heading">Reported</div>
 
                     <div class="panel-body">
-                        <a href="{{ url('/admin/reported') }}">View Reported Ads</a>
+                        
                     </div>
                 </div>
             </div>

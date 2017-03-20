@@ -27,5 +27,27 @@
     <p id="rentaldesc">
         <?=$rental->description?>
     </p>
+    <div class="panel-body">
+        <button id="myBtn" class="btn btn-primary">Report this ad</button>
+    </div>
 
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+     <!-- Modal content -->
+        <div class="modal-content">
+           <span class="close">&times;</span>
+           <form method="post" action="/rental/">
+               <h4>Reason(s)</h4>
+               <input type="radio" name="reportType" value="phishing"/>
+               <label>Phishing</label><br />
+               <input type="radio" name="reportType" value="bot"/>
+               <label>Not a real person</label><br />
+               <input type="radio" name="reportType" value="inflamatory"/>
+               <label>Inflamatory</label><br />
+               <h4>Description</h4>
+               <textarea name="content"></textarea><br /><br />
+               <input type="submit" id="myBtn" class="btn btn-primary" value="Submit report"/>
+           </form>
+        </div>
+    </div>
 @endsection

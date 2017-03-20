@@ -113,5 +113,6 @@
         console.log(options);
         var rentalList = new List('rentals', options);
     </script>
+    <script src="{{ asset('js/reportform.js') }}"></script>
 </body>
 </html>

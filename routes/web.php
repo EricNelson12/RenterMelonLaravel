@@ -31,10 +31,10 @@ Route::get('/terms', function () {
     return view('terms');
 });
 
-Route::get('/report?{rid}', 'RentalController@reportScam');
+Route::post('/report/{id}{rID}{reportType}{desc}', 'RentalController@reportScam');
 
-Route::get('/admin/dashboard', ['middleware' => ['auth', 'admin'], function() {
+Route::get('/admin/dashboard', ['middleware' => ['auth', 'admin'], function () {
     return view('admin.dashboard');
 }]);
 
-Route::get('/admin/reported', ['middleware' => ['auth', 'admin'], 'RentalController@showReported' ]);
+Route::get('/admin/reported', ['middleware' => ['auth', 'admin'], 'uses' => 'RentalController@showReported' ]);
