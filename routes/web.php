@@ -33,6 +33,8 @@ Route::get('/terms', function () {
 
 Route::get('/report?{rid}', 'RentalController@reportScam');
 
-Route::get('admin', ['middleware' => ['auth', 'admin'], function() {
-    return view('admin');
+Route::get('/admin/dashboard', ['middleware' => ['auth', 'admin'], function() {
+    return view('admin.dashboard');
 }]);
+
+Route::get('/admin/reported', ['middleware' => ['auth', 'admin'], 'RentalController@showReported' ]);

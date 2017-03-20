@@ -24,4 +24,9 @@ class RentalController extends Controller
     function reportScam ($rID) {
         // $sql = '';
     }
+
+    function showReported () {
+        $reported = DB::table('report')->get();
+        return view('admin.reported', ['reported' => $reported]); 
+    }
 }

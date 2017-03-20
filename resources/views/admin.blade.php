@@ -8,7 +8,7 @@
                 <div class="panel-heading">Dashboard</div>
 
                 <div class="panel-body">
-                    You are as an admin!
+                    <a href="">View reported.</a>
                 </div>
             </div>
         </div>
