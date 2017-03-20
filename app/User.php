@@ -27,8 +27,11 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function isAdmin()
-        {
-            return $this->isAdmin; // this looks for an admin column in your users table
-        }
+    public function isAdmin() {
+        return $this->isAdmin; // this looks for an admin column in your users table
+    }
+
+    public function getId(){
+        return $this->id;
+    }
 }

@@ -31,7 +31,7 @@ Route::get('/terms', function () {
     return view('terms');
 });
 
-Route::post('/report/{id}{rID}{reportType}{desc}', 'RentalController@reportScam');
+Route::post('/report/{id}/{rID}/{reportType}/{desc}', ['as' => '' ,'uses' => 'RentalController@reportScam']);
 
 Route::get('/admin/dashboard', ['middleware' => ['auth', 'admin'], function () {
     return view('admin.dashboard');

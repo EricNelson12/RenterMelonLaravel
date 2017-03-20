@@ -21,10 +21,12 @@ class RentalController extends Controller
     }
 
     // TODO: make a function that adds reported ads to a the report table
-    function reportScam ($id, $rID, $reportType, $desc) {
+    function reportScam ($rID, $reportType, $desc) {
+        $id = Auth::user()->getId();
         DB::table('report')->insert(
             ['id' => $id, 'rID' => $rID, 'reportType' => $reportType, 'description' => $desc]
         );
+        return view('/home');
     }
 
     function showReported () {
