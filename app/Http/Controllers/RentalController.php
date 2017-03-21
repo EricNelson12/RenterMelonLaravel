@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Request;
 use App\Http\Controllers\Controller;
 use DB;
+use Auth;
 
 class RentalController extends Controller
 {
@@ -20,17 +21,26 @@ class RentalController extends Controller
         return view('rentals.rental', ['rental' => $rental]);
     }
 
-    // TODO: make a function that adds reported ads to a the report table
-    function reportScam ($rID, $reportType, $desc) {
+    // Insert a reported ad into a the database
+    function reportScam () {
         $id = Auth::user()->getId();
+        $rID = Request::input('rID');
+        $reportType = Request::input('reportType');
+        $desc = Request::input('desc');
         DB::table('report')->insert(
             ['id' => $id, 'rID' => $rID, 'reportType' => $reportType, 'description' => $desc]
         );
         return view('/home');
     }
 
+    // Show a list of reported ads if authorized
     function showReported () {
         $reported = DB::table('report')->get();
         return view('admin.reported', ['reported' => $reported]);
+    }
+
+    // 
+    function filterAds () {
+
     }
 }

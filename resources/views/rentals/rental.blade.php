@@ -27,30 +27,41 @@
     <p id="rentaldesc">
         <?=$rental->description?>
     </p>
-    <div class="panel-body">
-        <button id="myBtn" class="btn btn-primary">Report this ad</button>
-    </div>
-    <?php
-        $_POST['id'] = Auth::user()->getId();
-        $_POST['rID'] = $rental->rID;
-     ?>
-    <!-- The Modal -->
-    <div id="myModal" class="modal">
-     <!-- Modal content -->
-        <div class="modal-content">
-           <span class="close">&times;</span>
-           <form method="post" action="{{ url('report') }}">
-               <h4>Reason(s)</h4>
-               <input type="radio" name="reportType" value="phishing"/>
-               <label>Phishing</label><br />
-               <input type="radio" name="reportType" value="bot"/>
-               <label>Not a real person</label><br />
-               <input type="radio" name="reportType" value="inflamatory"/>
-               <label>Inflamatory</label><br />
-               <h4>Description</h4>
-               <textarea name="desc"></textarea><br /><br />
-               <input type="submit" id="myBtn" class="btn btn-primary" value="Submit report"/>
-           </form>
+
+
+    {{--
+        If a logged in user views this page they got the option to report below.
+        A modal form will pop up.
+    --}}
+    @if(Auth::user() !== null)
+        <div class="panel-body">
+            <button id="myBtn" class="btn btn-primary">Report this ad</button>
         </div>
-    </div>
+        <?php
+        $_POST['id'] = Auth::user()->getId();
+         ?>
+
+        {{-- This is a modal form. I woul not recommend changing the CSS for it --}}
+        <div id="myModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <form method="post" action="/report">
+                {{ csrf_field() }}
+                    <input type="hidden" name="rID" value="<?= $rental->rID ?>" />
+                    <h4>Reason</h4>
+                    <input type="radio" name="reportType" value="Phishing"/>
+                    <label>Phishing</label><br />
+                    <input type="radio" name="reportType" value="Bot"/>
+                    <label>Bot</label><br />
+                    <input type="radio" name="reportType" value="Prince"/>
+                    <label>Foreign prince</label><br />
+                    <input type="radio" name="reportType" value="Other"/>
+                    <label>Other scam</label><br />
+                    <h4>Description</h4>
+                    <textarea name="desc"></textarea><br /><br />
+                    <input type="submit" id="myBtn" class="btn btn-primary" value="Submit report"/>
+                </form>
+            </div>
+        </div>
+    @endif
 @endsection

@@ -31,10 +31,10 @@ Route::get('/terms', function () {
     return view('terms');
 });
 
-Route::post('/report/{id}/{rID}/{reportType}/{desc}', ['as' => '' ,'uses' => 'RentalController@reportScam']);
+Route::post('/report', 'RentalController@reportScam');
 
+// Middleware is used to route admins to restricted places
 Route::get('/admin/dashboard', ['middleware' => ['auth', 'admin'], function () {
     return view('admin.dashboard');
 }]);
-
 Route::get('/admin/reported', ['middleware' => ['auth', 'admin'], 'uses' => 'RentalController@showReported' ]);
