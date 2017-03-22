@@ -2,18 +2,22 @@
 @section ('content')
 
     {{-- TODO: submit on change and make this actually work --}}
-    <form id="filter" >
+    <form id="filter" method="post" action="/rentals/filter" >
         {!! csrf_field() !!}
         <table>
             <tr>
                 <th>Smoking:</th>
-                <td><input type="checkbox" name="smoking"/></td>
+                <td><input type="checkbox" name="smoke" onchange="this.form.submit()"/></td>
             </tr>
             <tr>
                 <th>Pets:</th>
-                <td><input type="checkbox" name="pets"/></td>
+                <td><input type="checkbox" name="pets" onchange="this.form.submit()"/></td>
             </tr>
             <tr>
+                <th>Furnished:</th>
+                <td><input type="checkbox" name="furn" onchange="this.form.submit()"/></td>
+            </tr>
+            {{-- <tr>
                 <th>Size:</th>
                 <td><input type="range"
                     min="10" max="2000" step="10"
@@ -42,7 +46,7 @@
                     <option value="3" >3</option>
                     <option value="4" >4</option>
                 </select></td>
-            </tr>
+            </tr> --}}
         </table>
     </form>
     <div id="rentals">
@@ -63,11 +67,11 @@
             foreach ($rentals as $rental) {
             ?><tr>
                 <td>
-                <?php 
+                <?php
                 if (strcmp($rental->img, "no image") != 0)
                 	echo "<img src=\"".$rental->img."\" alt=\"rental image\" width=\"120px\">";
 
-                ?>	
+                ?>
                 </td>
                 <td class="rentaltitle"><a href="/rental/<?=$rental->rID?>"><?=$rental->title?></a></td>
                 <td class="rentalprice"><?=$rental->price?></td>

@@ -39,12 +39,22 @@ class RentalController extends Controller
         return view('admin.reported', ['reported' => $reported]);
     }
 
-    function saveAd () {
-
-    }
-
     //
     function filterAds () {
+        $sql = "select * from rental where ";
+        if (Request::input('smoke') == true){
+            $sql .= "smoke = true and ";
+        }
+        if (Request::input('pets') == true){
+            $sql .= "pets = true and ";
+        }
+        if (Request::input('furn') == true){
+            $sql .= "furn = true and ";
+        }
 
+        // Just had to make sure 1 = 1. You can never be too sure of anything.
+        $sql .= "1 = 1";
+        $rentals = DB::select($sql);
+        return view('rentals', ['rentals' => $rentals]);
     }
 }

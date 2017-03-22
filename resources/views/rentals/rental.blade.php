@@ -24,10 +24,10 @@
             <td><?=$rental->dateAdded?></td>
         </tr>
     </table>
-    <?php 
+    <?php
         if (strcmp($rental->img, "no image") != 0)
              echo "<img src=\"".$rental->img."\" alt=\"rental image\" width=\"450px\">";
-         else 
+         else
             echo "no image available";
 
      ?>
@@ -48,7 +48,7 @@
         $_POST['id'] = Auth::user()->getId();
          ?>
 
-        {{-- This is a modal form. I woul not recommend changing the CSS for it --}}
+        {{-- This is a modal form. I would not recommend changing the CSS for it --}}
         <div id="myModal" class="modal">
             <div class="modal-content">
                 <span class="close">&times;</span>
