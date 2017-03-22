@@ -42,19 +42,30 @@ class RentalController extends Controller
     //
     function filterAds () {
         $sql = "select * from rental where ";
-        if (Request::input('smoke') == true){
-            $sql .= "smoke = true and ";
-        }
-        if (Request::input('pets') == true){
-            $sql .= "pets = true and ";
-        }
-        if (Request::input('furn') == true){
-            $sql .= "furn = true and ";
-        }
 
-        // Just had to make sure 1 = 1. You can never be too sure of anything.
+        if (Request::input('smoke') == true) {
+            $sql .= "smoke = true and ";
+            $smoke = true;
+        } else {
+            $smoke = null;
+        }
+        if (Request::input('pets') == true) {
+            $sql .= "pets = true and ";
+            $pets = true;
+        } else {
+            $pets = null;
+        }
+        if (Request::input('furn') == true) {
+            $sql .= "furn = true and ";
+            $furn = true;
+        } else {
+            $furn = null;
+        }
+        $filters = array('smoke' => $smoke, 'pets' => $pets, 'furn' => $furn);
+
+        // Just had to make sure 1 == 1. You can never be too sure of anything.
         $sql .= "1 = 1";
         $rentals = DB::select($sql);
-        return view('rentals', ['rentals' => $rentals]);
+        return view('rentals', ['rentals' => $rentals, 'filters' => $filters, 'requestdata' => Request::input('all')]);
     }
 }
