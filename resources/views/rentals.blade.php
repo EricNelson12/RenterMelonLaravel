@@ -60,6 +60,7 @@
                 <th>Address</th>
                 <th><button class="sort" data-sort="originalad">Original ad</button></th>
                 <th><button class="sort" data-sort="dateadded">Post date</button></th>
+                <th>Save Ad</th>
             </tr>
             <tbody class="list">
             <?php
@@ -90,6 +91,7 @@
                 }
                 ?></a></td>
                 <td class="dateadded"><?=$rental->dateAdded;?></td>
+                <td class= "saveAd"><a href="/saveAd/<?=$rental->rID?>"><?php if($rental->isSaved){echo 'Saved';}else{echo 'Save Ad';}?> </a></td>
             </tr>
             <?php } ?>
         </tbody>

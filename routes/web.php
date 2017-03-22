@@ -43,3 +43,5 @@ Route::get('/admin/reported', ['middleware' => ['auth', 'admin'], 'uses' => 'Ren
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
+
+Route::get('/saveAd/{rID}', 'RentalController@saveAd');

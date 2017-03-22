@@ -10,8 +10,22 @@ use Auth;
 class RentalController extends Controller
 {
     function showRentals () {
+
+        $id = Auth::user()->getId();
         // TODO: select max and min size and price for sliders
-        $rentals = DB::table('rental')->get();
+        // $rentals = DB::table('rental')->get();
+
+        $rentals = DB::select("SELECT *  FROM rental AS R
+
+LEFT JOIN
+    (
+        SELECT id As isSaved, rID As dontmatter
+        FROM savedads
+        WHERE id = $id
+    ) AS A
+ON (R.rID = A.dontmatter);
+");
+
         return view('rentals', ['rentals' => $rentals]);
     }
 
@@ -41,7 +55,19 @@ class RentalController extends Controller
 
     //
     function filterAds () {
-        $sql = "select * from rental where ";
+
+        $id = Auth::user()->getId();
+
+        $sql = "SELECT *  FROM rental AS R
+        LEFT JOIN
+            (
+                SELECT id As isSaved, rID As dontmatter
+                FROM savedads
+                WHERE id = $id
+            ) AS A
+        ON (R.rID = A.dontmatter) WHERE ";
+
+
         if (Request::input('smoke') == true){
             $sql .= "smoke = true and ";
         }
@@ -56,5 +82,19 @@ class RentalController extends Controller
         $sql .= "1 = 1";
         $rentals = DB::select($sql);
         return view('rentals', ['rentals' => $rentals]);
+    }
+
+    function saveAd($rID){
+
+
+
+
+      $id = Auth::user()->getId();
+
+
+      DB::table('savedads')->insert(
+          ['id' => $id, 'rID' => $rID]
+      );
+      return redirect('/home');
     }
 }
