@@ -62,7 +62,13 @@
             // this loops through each rental and displays its information in tabular form
             foreach ($rentals as $rental) {
             ?><tr>
-                <td>{{-- TODO: put thumbnail here :) --}}</td>
+                <td>
+                <?php 
+                if (strcmp($rental->img, "no image") != 0)
+                	echo "<img src=\"".$rental->img."\" alt=\"rental image\" width=\"120px\">";
+
+                ?>	
+                </td>
                 <td class="rentaltitle"><a href="/rental/<?=$rental->rID?>"><?=$rental->title?></a></td>
                 <td class="rentalprice"><?=$rental->price?></td>
                 <td class="rentalarea"><?=$rental->area?></td>

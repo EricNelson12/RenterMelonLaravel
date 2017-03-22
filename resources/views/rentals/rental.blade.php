@@ -5,7 +5,7 @@
         Image would be placed here in the HTML
         Floating left of the table would probably look cool
     -->
-    <table id="rentaldetails">
+    <table id="rentaldetails" style="float:left; margin-right: 5%;" width="50%">
 
         <tr>
             <th>Price</th>
@@ -24,7 +24,14 @@
             <td><?=$rental->dateAdded?></td>
         </tr>
     </table>
-    <p id="rentaldesc">
+    <?php 
+        if (strcmp($rental->img, "no image") != 0)
+             echo "<img src=\"".$rental->img."\" alt=\"rental image\" width=\"450px\">";
+         else 
+            echo "no image available";
+
+     ?>
+    <p id="rentaldesc" style="clear:both;">
         <?=$rental->description?>
     </p>
 
