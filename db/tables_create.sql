@@ -57,15 +57,16 @@ CREATE TABLE contact (
 
 CREATE TABLE users (
   id int(10) unsigned NOT NULL AUTO_INCREMENT,
-  name varchar(255)   NOT NULL,
-  email varchar(255)   NOT NULL,
-  password varchar(255) NOT NULL,
-  remember_token varchar(100) DEFAULT NULL,
+  name varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  email varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  password varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  remember_token varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   created_at timestamp NULL DEFAULT NULL,
   updated_at timestamp NULL DEFAULT NULL,
   isAdmin tinyint(1),
-  PRIMARY KEY (id)
-)
+  PRIMARY KEY (id),
+  UNIQUE KEY users_email_unique (email)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 /*
 		Below here not used in release 1 but they seemed easy enough to have in here.

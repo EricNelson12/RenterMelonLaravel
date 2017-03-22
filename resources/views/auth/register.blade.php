@@ -60,11 +60,7 @@
                             </div>
                         </div>
 
-						<div class ="termscheck">
-						<input type="checkbox" class="agree" name="TermsandServices" required />
-                         I Agree to the <a href="{{ url('/terms') }}">Terms of Service</a>
-                        </div>
-						<div class="form-group">
+                        <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
                                 <button type="submit" class="btn btn-primary">
                                     Register
