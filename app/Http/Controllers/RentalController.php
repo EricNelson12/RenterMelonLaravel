@@ -30,7 +30,7 @@ class RentalController extends Controller
         DB::table('report')->insert(
             ['id' => $id, 'rID' => $rID, 'reportType' => $reportType, 'description' => $desc]
         );
-        return view('/home');
+        return redirect('/home');
     }
 
     // Show a list of reported ads if authorized
@@ -39,7 +39,11 @@ class RentalController extends Controller
         return view('admin.reported', ['reported' => $reported]);
     }
 
-    // 
+    function saveAd () {
+
+    }
+
+    //
     function filterAds () {
 
     }
