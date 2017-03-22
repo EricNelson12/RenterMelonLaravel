@@ -1,21 +1,47 @@
 @extends ('layouts.app')
 @section ('content')
 
-    {{-- TODO: submit on change and make this actually work --}}
+    {{-- TODO: Make miltiple filters work --}}
     <form id="filter" method="post" action="/rentals/filter" >
+
         {!! csrf_field() !!}
+        <h4>Filters</h4>
         <table>
             <tr>
                 <th>Smoking:</th>
-                <td><input type="checkbox" name="smoke" onchange="this.form.submit()"/></td>
+                <td><input type="checkbox" name="smoke" onchange="this.form.submit()"
+                    <?php
+                    if (isset($filters['smoke'])) {
+                        if ($filters['smoke'] == true) {
+                            echo 'checked';
+                        }
+                    }
+                    ?>
+                /></td>
             </tr>
             <tr>
                 <th>Pets:</th>
-                <td><input type="checkbox" name="pets" onchange="this.form.submit()"/></td>
+                <td><input type="checkbox" name="pets" onchange="this.form.submit()"
+                    <?php
+                    if (isset($filters['pets'])) {
+                        if ($filters['pets'] == true) {
+                            echo 'checked';
+                        }
+                    }
+                    ?>
+                /></td>
             </tr>
             <tr>
                 <th>Furnished:</th>
-                <td><input type="checkbox" name="furn" onchange="this.form.submit()"/></td>
+                <td><input type="checkbox" name="furn" onchange="this.form.submit()"
+                    <?php
+                    if (isset($filters['furn'])) {
+                        if ($filters['furn'] == true) {
+                            echo 'checked';
+                        }
+                    }
+                    ?>
+                /></td>
             </tr>
             {{-- <tr>
                 <th>Size:</th>
@@ -48,6 +74,7 @@
                 </select></td>
             </tr> --}}
         </table>
+        <a id="myBtn" class="btn btn-primary" href="/rentals">Clear</a>
     </form>
     <div id="rentals">
         <table id="maintable">
