@@ -44,11 +44,19 @@
                 /></td>
             </tr>
             <tr>
-                <th>Price:</th>
+                <th>Max Price:</th>
                 <td><input
                     type="range"
                     min="<?=$minprice?>" max="<?=$maxprice?>"
-                    step="10"
+                    step="1"
+                    value="
+                    <?php
+                    // We want the maxprice selected but only if it's selected
+                        if ( isset($filters['maxpricewanted']) ) {
+                            echo $filters['maxpricewanted'];
+                        } else { echo $maxprice; }
+                    ?>
+                    "
                     name="maxpricewanted"
                     onchange="this.form.submit()"/>
                 </td>

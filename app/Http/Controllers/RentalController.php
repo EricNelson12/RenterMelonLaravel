@@ -70,7 +70,11 @@ class RentalController extends Controller
 
     //
     function filterAds () {
-
+        $sorry = DB::select("select MAX(price) as maxprice, MIN(price) as minprice from rental");
+        foreach ($sorry as $yep) {
+            $maxprice = $yep->maxprice;
+            $minprice = $yep->minprice;
+        }
         if (Auth::check()){
             $id = Auth::user()->getId();
         }else{
@@ -103,29 +107,21 @@ class RentalController extends Controller
         }
         if (Request::input('furn') == true) {
             $sql .= "furn = true and ";
-            $furn = true;
+            $max = true;
         } else {
             $furn = null;
         }
         if (Request::input('maxpricewanted') !== null) {
-            $m = Request::input('maxpricewanted');
-            $sql .= "price < $m and ";
-            $furn = true;
-        } else {
-            $furn = null;
+            $maxmpricewanted = Request::input('maxpricewanted');
+            $sql .= "price < $maxmpricewanted and ";
         }
 
-
-        $filters = array('smoke' => $smoke, 'pets' => $pets, 'furn' => $furn);
+        $filters = array('smoke' => $smoke, 'pets' => $pets, 'furn' => $furn, 'maxpricewanted' => $maxmpricewanted);
 
         // You can never be too sure of anything.
         $sql .= "1 = 1";
         $rentals = DB::select($sql);
-        $sorry = DB::select("select MAX(price) as maxprice, MIN(price) as minprice from rental");
-        foreach ($sorry as $yep) {
-            $maxprice = $yep->maxprice;
-            $minprice = $yep->minprice;
-        }
+
         return view('rentals', ['rentals' => $rentals, 'filters' => $filters, 'minprice' => $minprice, 'maxprice' => $maxprice]);
     }
 
