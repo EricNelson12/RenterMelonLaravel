@@ -1,0 +1,111 @@
+.agree{
+	width: 20px;
+    height: 20px;
+display: inline;
+	}
+.terms {
+	padding: 0 1em 0 1em;
+    margin-left: auto;
+    margin-right: auto;
+    width: 40em;
+	height: 10em;
+	overflow: auto;
+    border: 1px solid #c3c3c3;
+}
+.termscheck {
+  margin-left: 6em;
+  height: 5em;
+}
+
+#maintable {
+	width: 70%;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#rentaldetails {
+	margin-left: 2em;
+	width: 40%;
+}
+
+#rentaldesc {
+	margin: 2em 0 0 2em;
+	width: 80%;
+}
+
+th.sort:hover {
+	background-color:#d1d1d1 ;
+	cursor: pointer;
+}
+
+td {
+	padding: 1em 2em 1em 2em;
+	text-align: left;
+}
+tr {
+	border-bottom: 1px solid #d1d1d1;
+}
+
+body {
+	font-family: Arial;
+}
+
+#searchbar {
+	margin: 1em auto 2em auto;
+	width: 60%;
+	max-width: 50em;
+}
+
+#filter {
+	float: left;
+	margin-left: 0.5em;
+	padding: .5em;
+	border: 1px solid #d1d1d1;
+}
+
+#filter * {
+	border: none;
+}
+
+/* The Modal (background) */
+.modal {
+   display: none; /* Hidden by default */
+   position: fixed; /* Stay in place */
+   z-index: 1; /* Sit on top */
+   left: 0;
+   top: 0;
+   width: 100%; /* Full width */
+
+   overflow: auto; /* Enable scroll if needed */
+   background-color: rgb(0,0,0); /* Fallback color */
+   background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+   background-color: #fefefe;
+   margin: 15% auto; /* 15% from the top and centered */
+   padding: 20px;
+   border: 1px solid #888;
+   width: 50%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.close {
+   color: #aaa;
+   float: right;
+   font-size: 28px;
+   font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+   color: black;
+   text-decoration: none;
+   cursor: pointer;
+}
+
+textarea {
+	width: 400px;
+	height: 300px;
+}
