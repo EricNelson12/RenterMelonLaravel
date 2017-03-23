@@ -34,7 +34,7 @@ class RentalController extends Controller
         $sql .= " ) AS A
         ON (R.rID = A.dontmatter) ";
 
-        $rentals = DB::select();
+        $rentals = DB::select($sql);
 
         return view('rentals', ['rentals' => $rentals]);
     }
@@ -113,10 +113,12 @@ class RentalController extends Controller
 
         $filters = array('smoke' => $smoke, 'pets' => $pets, 'furn' => $furn);
 
-        // Just had to make sure 1 == 1. You can never be too sure of anything.
+        // You can never be too sure of anything.
         $sql .= "1 = 1";
         $rentals = DB::select($sql);
-        return view('rentals', ['rentals' => $rentals, 'filters' => $filters, 'requestdata' => Request::input('all')]);
+        $maxprice = $rentals[0]->maxprice;
+        $minprice = $rentals[0]->minprice;
+        return view('rentals', ['rentals' => $rentals, 'filters' => $filters, 'minprice' => $minprice, 'maxprice' => $maxprice]);
     }
 
     function saveAd($rID){

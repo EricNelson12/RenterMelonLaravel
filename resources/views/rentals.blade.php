@@ -47,7 +47,7 @@
                 <th>Price:</th>
                 <td><input
                     type="range"
-                    min="<?=$rentals->minprice?>" max="<?=$rentals->maxprice?>"
+                    min="<?=$minprice?>" max="<?=$maxprice?>"
                     step="10"
                     name="maxpricewanted"
                     onchange="this.form.submit()"/>
