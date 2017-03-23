@@ -107,7 +107,7 @@ class RentalController extends Controller
         }
         if (Request::input('furn') == true) {
             $sql .= "furn = true and ";
-            $max = true;
+            $furn = true;
         } else {
             $furn = null;
         }

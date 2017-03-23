@@ -7,6 +7,7 @@
         {!! csrf_field() !!}
         <h4>Filters</h4>
         <table>
+            {{-- For each filter we want to evaluate whether the user checked it at all. --}}
             <tr>
                 <th>Smoking:</th>
                 <td><input type="checkbox" name="smoke" onchange="this.form.submit()"
@@ -51,7 +52,7 @@
                     step="1"
                     value="
                     <?php
-                    // We want the maxprice selected but only if it's selected
+                    // We want the maxprice selected by the user but only if it's selected
                         if ( isset($filters['maxpricewanted']) ) {
                             echo $filters['maxpricewanted'];
                         } else { echo $maxprice; }
