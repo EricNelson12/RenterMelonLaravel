@@ -11,14 +11,16 @@ use FatalErrorException;
 class RentalController extends Controller
 {
     function showRentals () {
-        try {
-            $id = Auth::user()->getId();
-        } catch (FatalErrorException $e) {
-            echo ':()';
-        } finally {
-            echo ':)';
-        }
+
         // $rentals = DB::table('rental')->get();
+
+
+      if (Auth::check()){
+          $id = Auth::user()->getId();
+      }else{
+            $id = 'NULL';
+      }
+
 
         $sql = "SELECT *, MAX(price) as maxprice, MIN(price) as minprice
         FROM rental AS R
@@ -64,7 +66,11 @@ class RentalController extends Controller
     //
     function filterAds () {
 
-        $id = Auth::user()->getId();
+        if (Auth::check()){
+            $id = Auth::user()->getId();
+        }else{
+              $id = 'NULL';
+        }
 
         $sql =
         "SELECT *, MAX(price) as maxprice, MIN(price) as minprice

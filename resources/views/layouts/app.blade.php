@@ -12,6 +12,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/X-Treme.css') }}" rel="stylesheet">
 
     <!-- Scripts -->
     <script>
@@ -108,7 +109,7 @@
         <script src="{{ url('http://listjs.com/assets/javascripts/list.min.js') }}"></script>
     <script>
         var options = {
-            valueNames: [ 'rentaltitle', 'rentalprice', 'rentalarea', 'originalad', 'dateadded' ]
+            valueNames: [ 'rentaltitle', 'rentalprice', 'rentalarea', 'originalad', 'dateadded','isSaved' ]
         };
         console.log(options);
         var rentalList = new List('rentals', options);
