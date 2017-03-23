@@ -22,7 +22,7 @@ class RentalController extends Controller
       }
 
 
-        $sql = "SELECT *, MAX(price) as maxprice, MIN(price) as minprice
+        $sql = "SELECT *
         FROM rental AS R
         LEFT JOIN
             (
@@ -35,8 +35,13 @@ class RentalController extends Controller
         ON (R.rID = A.dontmatter) ";
 
         $rentals = DB::select($sql);
-
-        return view('rentals', ['rentals' => $rentals]);
+        // Need to get the max and min price somehow. It's not pretty
+        $sorry = DB::select("select MAX(price) as maxprice, MIN(price) as minprice from rental");
+        foreach ($sorry as $yep) {
+            $maxprice = $yep->maxprice;
+            $minprice = $yep->minprice;
+        }
+        return view('rentals', ['rentals' => $rentals, 'minprice' => $minprice, 'maxprice' => $maxprice]);
     }
 
     // Takes the user to a single rental page
@@ -73,7 +78,7 @@ class RentalController extends Controller
         }
 
         $sql =
-        "SELECT *, MAX(price) as maxprice, MIN(price) as minprice
+        "SELECT *
         FROM rental AS R
         LEFT JOIN
             (
@@ -116,8 +121,11 @@ class RentalController extends Controller
         // You can never be too sure of anything.
         $sql .= "1 = 1";
         $rentals = DB::select($sql);
-        $maxprice = $rentals[0]->maxprice;
-        $minprice = $rentals[0]->minprice;
+        $sorry = DB::select("select MAX(price) as maxprice, MIN(price) as minprice from rental");
+        foreach ($sorry as $yep) {
+            $maxprice = $yep->maxprice;
+            $minprice = $yep->minprice;
+        }
         return view('rentals', ['rentals' => $rentals, 'filters' => $filters, 'minprice' => $minprice, 'maxprice' => $maxprice]);
     }
 
