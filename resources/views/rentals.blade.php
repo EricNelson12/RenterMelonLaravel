@@ -43,26 +43,33 @@
                     ?>
                 /></td>
             </tr>
-            {{-- <tr>
-                <th>Size:</th>
-                <td><input type="range"
-                    min="10" max="2000" step="10"
-                    name="size"/></td>
-            </tr>
             <tr>
                 <th>Price:</th>
-                <td><input type="range"
-                    min="100" max="500" step="10"
-                    name="size"/></td>
+                <td><input
+                    type="range"
+                    min="<?=$rentals->minprice?>" max="<?=$rentals->maxprice?>"
+                    step="10"
+                    name="maxpricewanted"
+                    onchange="this.form.submit()"/>
+                </td>
             </tr>
-            <tr>
+            {{--
+                <tr>
+                <tr>
+                <th>Size:</th>
+                <td><input type="range"
+                min="10" max="2000" step="10"
+                name="size"/></td>
+            </tr>
                 <th>Bedrooms:</th>
-                <td><select name="bedrooms">
-                    <option value="1" >1</option>
-                    <option value="2" >2</option>
-                    <option value="3" >3</option>
-                    <option value="4" >4</option>
-                </select></td>
+                <td>
+                    <select name="bedrooms">
+                        <option value="1" >1</option>
+                        <option value="2" >2</option>
+                        <option value="3" >3</option>
+                        <option value="4" >4</option>
+                    </select>
+                </td>
             </tr>
             <tr>
                 <th>Bathrooms:</th>

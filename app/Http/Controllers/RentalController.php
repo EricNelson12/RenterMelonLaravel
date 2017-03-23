@@ -6,25 +6,33 @@ use Request;
 use App\Http\Controllers\Controller;
 use DB;
 use Auth;
+use FatalErrorException;
 
 class RentalController extends Controller
 {
     function showRentals () {
-
-        $id = Auth::user()->getId();
-        // TODO: select max and min size and price for sliders
+        try {
+            $id = Auth::user()->getId();
+        } catch (FatalErrorException $e) {
+            echo ':()';
+        } finally {
+            echo ':)';
+        }
         // $rentals = DB::table('rental')->get();
 
-        $rentals = DB::select("SELECT *  FROM rental AS R
+        $sql = "SELECT *, MAX(price) as maxprice, MIN(price) as minprice
+        FROM rental AS R
+        LEFT JOIN
+            (
+                SELECT id As isSaved, rID As dontmatter
+                FROM savedads ";
+                if ($id == true) {
+                    $sql .= " WHERE id = $id ";
+                }
+        $sql .= " ) AS A
+        ON (R.rID = A.dontmatter) ";
 
-LEFT JOIN
-    (
-        SELECT id As isSaved, rID As dontmatter
-        FROM savedads
-        WHERE id = $id
-    ) AS A
-ON (R.rID = A.dontmatter);
-");
+        $rentals = DB::select();
 
         return view('rentals', ['rentals' => $rentals]);
     }
@@ -58,7 +66,9 @@ ON (R.rID = A.dontmatter);
 
         $id = Auth::user()->getId();
 
-        $sql = "SELECT *  FROM rental AS R
+        $sql =
+        "SELECT *, MAX(price) as maxprice, MIN(price) as minprice
+        FROM rental AS R
         LEFT JOIN
             (
                 SELECT id As isSaved, rID As dontmatter
@@ -86,6 +96,15 @@ ON (R.rID = A.dontmatter);
         } else {
             $furn = null;
         }
+        if (Request::input('maxpricewanted') !== null) {
+            $m = Request::input('maxpricewanted');
+            $sql .= "price < $m and ";
+            $furn = true;
+        } else {
+            $furn = null;
+        }
+
+
         $filters = array('smoke' => $smoke, 'pets' => $pets, 'furn' => $furn);
 
         // Just had to make sure 1 == 1. You can never be too sure of anything.
