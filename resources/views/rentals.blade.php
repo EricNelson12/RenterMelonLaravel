@@ -82,12 +82,12 @@
             <tr>
                 <th></th>
                 <th></th>
-                <th><button class="sort" data-sort="rentalprice">Price</button></th>
+                <th class="sort" data-sort="rentalprice">Price</th>
                 <th>Area</th>
                 <th>Address</th>
-                <th><button class="sort" data-sort="originalad">Original ad</button></th>
-                <th><button class="sort" data-sort="dateadded">Post date</button></th>
-                <th>Save Ad</th>
+                <th class="sort" data-sort="originalad">Original ad</th>
+                <th class="sort" data-sort="dateadded">Post date</th>
+                <th class="sort" data-sort="isSaved">Saved Ads</th>
             </tr>
             <tbody class="list">
             <?php
@@ -118,7 +118,7 @@
                 }
                 ?></a></td>
                 <td class="dateadded"><?=$rental->dateAdded;?></td>
-                <td class= "saveAd"><a href="/saveAd/<?=$rental->rID?>"><?php if($rental->isSaved){echo 'Saved';}else{echo 'Save Ad';}?> </a></td>
+                <td class= "isSaved"><a href="/saveAd/<?=$rental->rID?>"><?php if($rental->isSaved){echo 'Saved';}else{echo 'Save Ad';}?> </a></td>
             </tr>
             <?php } ?>
         </tbody>

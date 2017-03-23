@@ -11,9 +11,13 @@ class RentalController extends Controller
 {
     function showRentals () {
 
-        $id = Auth::user()->getId();
-        // TODO: select max and min size and price for sliders
-        // $rentals = DB::table('rental')->get();
+      if (Auth::check()){
+          $id = Auth::user()->getId();
+      }else{
+            $id = 'NULL';
+      }
+
+
 
         $rentals = DB::select("SELECT *  FROM rental AS R
 
@@ -56,7 +60,11 @@ ON (R.rID = A.dontmatter);
     //
     function filterAds () {
 
-        $id = Auth::user()->getId();
+        if (Auth::check()){
+            $id = Auth::user()->getId();
+        }else{
+              $id = 'NULL';
+        }
 
         $sql = "SELECT *  FROM rental AS R
         LEFT JOIN
