@@ -9,7 +9,23 @@
 
         <tr>
             <th>Price</th>
-            <td><?=$rental->price?></td>
+            <td><?php
+
+            echo $rental->price;
+            echo " ";
+
+            if( abs($rental->guess - $rental->price) < 200){
+                echo '<span class="ok">Decent Value!</span>';
+            } else if ($rental->guess - $rental->price > 200){
+                echo '<span class="good">Inexpensive!</span>';
+            } else if ($rental->guess - $rental->price < -200){
+                echo '<span class="bad">Expensive!</span>';
+            }
+
+            //rentermelon price rating formula top secret tech here yall
+
+
+            ?></td>
         </tr>
         <tr>
             <th>Area</th>
@@ -33,6 +49,7 @@
      ?>
     <p id="rentaldesc" style="clear:both;">
         <?=$rental->description?>
+
     </p>
 
 

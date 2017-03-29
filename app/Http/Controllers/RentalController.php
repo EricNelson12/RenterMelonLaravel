@@ -46,7 +46,12 @@ class RentalController extends Controller
 
     // Takes the user to a single rental page
     function showRental ($rID) {
-        $rental = DB::table('rental')->where('rID', $rID)->first();
+
+         $rentals = DB::select("select *, (611 + 22*furn + -156*pets + -156*smoke + 282*bed + 282*bath) as guess from rental where rID = $rID");
+         foreach($rentals as $rent){
+            $rental = $rent;
+         }
+
         return view('rentals.rental', ['rental' => $rental]);
     }
 

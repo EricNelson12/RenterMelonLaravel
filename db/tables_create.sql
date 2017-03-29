@@ -37,6 +37,8 @@ CREATE TABLE rental (
 	pets BOOLEAN,
 	furn BOOLEAN, 
 	smoke BOOLEAN,
+	bed INTEGER,
+	bath INTEGER,
 	dateAdded DATETIME DEFAULT CURRENT_TIMESTAMP, 
 	PRIMARY KEY (rID)
 
