@@ -134,7 +134,22 @@
                 }
                 ?></a></td>
                 <td class="dateadded"><?=$rental->dateAdded;?></td>
-                <td class= "isSaved"><a href="/saveAd/<?=$rental->rID?>"><?php if($rental->isSaved){echo 'Saved';}else{echo 'Save Ad';}?> </a></td>
+                <td class= "isSaved">
+                <?php
+
+                 if($rental->isSaved){
+
+                 	echo '<a href="/unsaveAd/';
+                 	echo $rental->rID;
+                 	echo '">';
+                 	echo 'Remove Ad';}
+                 else{
+                 	echo '<a href="/saveAd/';
+                 	echo $rental->rID;
+                 	echo '">';
+                 	echo 'Save Ad';}
+
+                 ?> </a></td>
             </tr>
             <?php } ?>
         </tbody>

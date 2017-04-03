@@ -141,6 +141,21 @@ class RentalController extends Controller
       DB::table('savedads')->insert(
           ['id' => $id, 'rID' => $rID]
       );
-      return redirect('/home');
+      return redirect('/rentals');
     }
+
+    function unsaveAd($rID){
+
+
+
+
+      $id = Auth::user()->getId();
+
+
+      DB::table('savedads')->where('id','=',$id)->where('rID', '=', $rID)->delete();
+
+      return redirect('/rentals');
+    }
+
+
 }
