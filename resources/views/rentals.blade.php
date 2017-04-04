@@ -2,10 +2,12 @@
 @section ('content')
 
     {{-- TODO: Make miltiple filters work --}}
+    <?php if(isset($filters)) print_r($filters);
+    if(isset($sql)) echo "\n" .$sql;?>
     <form id="filter" method="post" action="/rentals/filter" >
 
         {!! csrf_field() !!}
-        <h4>Filters</h4>
+        <h4>Filter</h4>
         <table>
             {{-- For each filter we want to evaluate whether the user checked it at all. --}}
             <tr>
@@ -18,6 +20,15 @@
                     }?>/></td>
             </tr>
             <tr>
+                <th>No Smoking:</th>
+                <td><input type="checkbox" name="nosmoke" onchange="this.form.submit()"
+                    <?php if (isset($filters['nosmoke']) && $filters['nosmoke']!== null) {
+                        if ($filters['nosmoke'] == true) {
+                            echo 'checked';
+                        }
+                    } ?> /></td>
+                </tr>
+            <tr>
                 <th>Pets:</th>
                 <td><input type="checkbox" name="pets" onchange="this.form.submit()"
                     <?php if (isset($filters['pets']) && $filters['pets']!== null) {
@@ -27,24 +38,6 @@
                     }?>/></td>
             </tr>
             <tr>
-                <th>Furnished:</th>
-                <td><input type="checkbox" name="furn" onchange="this.form.submit()"
-                    <?php if (isset($filters['furn']) && $filters['furn']!== null) {
-                        if ($filters['furn'] == true) {
-                            echo 'checked';
-                        }
-                    }?>/></td>
-            </tr>
-            <tr>
-                <th>No Smoking:</th>
-                <td><input type="checkbox" name="nosmoke" onchange="this.form.submit()"
-                    <?php if (isset($filters['nosmoke']) && $filters['nosmoke']!== null) {
-                        if ($filters['nosmoke'] == true) {
-                            echo 'checked';
-                        }
-                    } ?> /></td>
-            </tr>
-            <tr>
                 <th>No Pets:</th>
                 <td><input type="checkbox" name="nopets" onchange="this.form.submit()"
                     <?php if (isset($filters['nopets']) && $filters['nopets']!== null) {
@@ -52,6 +45,15 @@
                             echo 'checked';
                         }
                     } ?> /></td>
+            </tr>
+            <tr>
+                <th>Furnished:</th>
+                <td><input type="checkbox" name="furn" onchange="this.form.submit()"
+                    <?php if (isset($filters['furn']) && $filters['furn']!== null) {
+                        if ($filters['furn'] == true) {
+                            echo 'checked';
+                        }
+                    }?>/></td>
             </tr>
             <tr>
                 <th>Unfurnished:</th>

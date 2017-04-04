@@ -97,43 +97,79 @@ class RentalController extends Controller
             ) AS A
         ON (R.rID = A.dontmatter) WHERE ";
 
-        if (Request::input('smoke') == true){
-            $sql .= "smoke = true and ";
-            $smoke = true;
-        } else {
-            $smoke = null;
-        }
-        if (Request::input('pets') == true) {
-            $sql .= "pets = true and ";
-            $pets = true;
-        } else {
-            $pets = null;
-        }
-        if (Request::input('furn') == true) {
-            $sql .= "furn = true and ";
-            $furn = true;
-        } else {
-            $furn = null;
+        // I like these conditionals less than you do 
+        if (Request::input('smoke') !== Request::input('nosmoke')) {
+                if ( Request::input('smoke') == true ){
+                $sql .= "smoke = true and ";
+                $smoke = 1;
+            } else {
+                $smoke = 0;
+            }
+            if (Request::input('nosmoke') == true){
+                $sql .= "smoke = false and ";
+                $nosmoke = 1;
+            } else {
+                $nosmoke = 0;
+            }
+        } elseif (Request::input('smoke') == Request::input('nosmoke')) {
+            if (Request::input('smoke') == true) {
+                $nosmoke = 1;
+                $smoke = 1;
+            }
+            elseif (Request::input('smoke') == false) {
+                $nosmoke = 0;
+                $smoke = 0;
+            }
         }
 
-        if (Request::input('nosmoke') == true){
-            $sql .= "smoke = false and ";
-            $nosmoke = true;
-        } else {
-            $nosmoke = null;
+        if (Request::input('pets') !== Request::input('nopets')) {
+            if (Request::input('pets') == true) {
+                $sql .= "pets = true and ";
+                $pets = 1;
+            } else {
+                $pets = 0;
+            }
+            if (Request::input('nopets') == true) {
+                $sql .= "pets = false and ";
+                $nopets = 1;
+            } else {
+                $nopets = 0;
+            }
+        } elseif (Request::input('pets') == Request::input('nopets')) {
+            if (Request::input('pets') == true) {
+                $nopets = 1;
+                $pets = 1;
+            }
+            elseif (Request::input('pets') == false) {
+                $nopets = 0;
+                $pets = 0;
+            }
         }
-        if (Request::input('nopets') == true) {
-            $sql .= "pets = false and ";
-            $nopets = true;
-        } else {
-            $nopets = null;
+
+        if (Request::input('furn') !== Request::input('nofurn')) {
+            if (Request::input('furn') == true) {
+                $sql .= "furn = true and ";
+                $furn = 1;
+            } else {
+                $furn = 0;
+            }
+            if (Request::input('nofurn') == true) {
+                $sql .= "furn = false and ";
+                $nofurn = 1;
+            } else {
+                $nofurn = 0;
+            }
+        } elseif (Request::input('furn') == Request::input('nofurn')) {
+            if (Request::input('furn') == true) {
+                $nofurn = 1;
+                $furn = 1;
+            }
+            elseif (Request::input('furn') == false) {
+                $nofurn = 0;
+                $furn = 0;
+            }
         }
-        if (Request::input('nofurn') == true) {
-            $sql .= "furn = false and ";
-            $nofurn = true;
-        } else {
-            $nofurn = null;
-        }
+
         if (Request::input('maxpricewanted') !== null) {
             $maxmpricewanted = Request::input('maxpricewanted');
             $sql .= "price < $maxmpricewanted and ";
@@ -146,14 +182,15 @@ class RentalController extends Controller
             'nosmoke' => $nosmoke,
             'nopets' => $nopets,
             'nofurn' => $nofurn,
-            'maxpricewanted' => $maxmpricewanted
+            'beds' => $beds,
+            'maxpricewanted' => $maxmpricewanted,
         );
 
         // You can never nobe too sure of anything.
         $sql .= "1 = 1";
         $rentals = DB::select($sql);
 
-        return view('rentals', ['rentals' => $rentals, 'filters' => $filters, 'minprice' => $minprice, 'maxprice' => $maxprice]);
+        return view('rentals', ['rentals' => $rentals, 'filters' => $filters, 'minprice' => $minprice, 'maxprice' => $maxprice, 'sql' => $sql]);
     }
 
     function saveAd($rID){
