@@ -21,9 +21,17 @@ Route::get('/test', function () {
 });
 
 // routes for returning rental views
-Route::get('rentals/', 'RentalController@showRentals');
-Route::post('rentals/filter', 'RentalController@filterAds');
+Route::get('rentals', 'RentalController@showRentals');
 Route::get('rental/{id}', 'RentalController@showRental');
+
+
+Route::group(['prefix'=>'rentals/filter'], function () {
+    if (Request::input('savefilters') == true) {
+        Route::post('/' ,'RentalController@saveFilters');
+    } else {
+        Route::post('/' ,'RentalController@filterAds');
+    }
+});
 
 Auth::routes();
 

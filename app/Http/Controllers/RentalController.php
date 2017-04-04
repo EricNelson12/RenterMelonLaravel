@@ -15,11 +15,11 @@ class RentalController extends Controller
         // $rentals = DB::table('rental')->get();
 
 
-      if (Auth::check()){
+        if (Auth::check()){
           $id = Auth::user()->getId();
-      }else{
+        } else {
             $id = 'NULL';
-      }
+        }
 
 
         $sql = "SELECT *
@@ -73,7 +73,7 @@ class RentalController extends Controller
         DB::table('report')->insert(
             ['id' => $id, 'rID' => $rID, 'reportType' => $reportType, 'description' => $desc]
         );
-        return redirect('/home');
+        return redirect('/rentals');
     }
 
     // Show a list of reported ads if authorized
@@ -133,7 +133,7 @@ class RentalController extends Controller
         /*
         * This is where things get strange. The way I thought about it was
         * if both checkboxes contain the same value then a user does
-        * not make a choice about the type of apartment. In SQL this
+        * not make a choice about the type of rental. In SQL this
         * would translate to an or condition as in "smoking or non-smoking".
         * But that would be every rental. "smoking and non-smoking"
         * would be no rentals. So no SQL is added at all. But the
@@ -234,18 +234,11 @@ class RentalController extends Controller
             'maxprice' => $maxprice,
             'maxbeds' => $maxbeds,
             'maxbaths' => $maxbaths,
-            'sql' => $sql
         ]);
     }
 
     function saveAd($rID){
-
-
-
-
       $id = Auth::user()->getId();
-
-
       DB::table('savedads')->insert(
           ['id' => $id, 'rID' => $rID]
       );
@@ -253,17 +246,9 @@ class RentalController extends Controller
     }
 
     function unsaveAd($rID){
-
-
-
-
       $id = Auth::user()->getId();
-
-
       DB::table('savedads')->where('id','=',$id)->where('rID', '=', $rID)->delete();
-
       return redirect('/rentals');
     }
-
 
 }

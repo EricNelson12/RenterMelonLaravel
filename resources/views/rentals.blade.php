@@ -2,8 +2,7 @@
 @section ('content')
 
     {{-- TODO: Make miltiple filters work --}}
-    <?php if(isset($filters)) print_r($filters);
-    if(isset($sql)) echo "\n" .$sql;?>
+
     <form id="filter" method="post" action="/rentals/filter" >
 
         {!! csrf_field() !!}
@@ -68,7 +67,7 @@
                 <th>Max Price:</th>
                 <td><input
                     type="range"
-                    min="<?=$minprice?>" max="<?=$maxprice?>"
+                    min="<?=$minprice - 5?>" max="<?=$maxprice + 5?>"
                     step="1"
                     value="<?php
                     // We want the maxprice selected by the user but only if it's selected
@@ -80,7 +79,7 @@
                     onchange="this.form.submit()"/></td>
             </tr>
 
-            {{-- <tr> 
+            {{-- <tr>
                 <th>Size:</th>
                 <td><input type="range"
                 min="10" max="2000" step="10"
@@ -90,12 +89,11 @@
                 <th>Bedrooms:</th>
                 <td><select
                     name="bed"
-                    onchange="this.form.submit()"
-                    <?php if (isset($filters['bed']) && $filters['bed']!== null) { ?>
-                        value="<?= $filters['bed'] ?>"
-                    <?php } ?>>
+                    onchange="this.form.submit()">
                 <?php for ($i = 1; $i <= $maxbeds; $i++) { ?>
-                    <option value="<?= $i ?>" ><?= $i ?></option>
+                    <option value="<?= $i ?>"
+                        <?php if (isset ($filters['bed']) && $filters['bed'] == $i) echo 'selected'; ?>><?= $i ?>
+                    </option>
                 <?php } ?>
                 </select></td>
             </tr>
@@ -103,24 +101,29 @@
                 <th>Bathrooms:</th>
                 <td><select
                     name="bath"
-                    onchange="this.form.submit()"
-                    <?php if (isset($filters['bath']) && $filters['bath']!== null) { ?>
-                        value="<?= $filters['bath'] ?>"
-                    <?php } ?>>
+                    onchange="this.form.submit()">
                 <?php for ($i = 1; $i <= $maxbaths; $i++) { ?>
-                    <option value="<?= $i ?>" ><?= $i ?></option>
+                    <option value="<?= $i ?>"
+                        <?php if (isset ($filters['bath']) && $filters['bath'] == $i) echo 'selected'; ?> ><?= $i ?>
+                    </option>
                 <?php } ?>
                 </select></td>
             </tr>
         </table>
+        {{-- <input type="submit" id="submit" class="btn btn-primary" name="submit" value="Submit" style="display:none;" /> --}}
+        @if (Auth::check())
+            <input type="submit" id="save" class="btn btn-primary" name="savefilters" value="Save These Filters" />
+        @endif
         <a id="myBtn" class="btn btn-primary" href="/rentals">Clear</a>
     </form>
+
+
+
     <div id="rentals">
         <table id="maintable">
             <input class="search form-control" id="searchbar" placeholder="Search" />
             <tr>
-                <th></th>
-                <th></th>
+                <th colspan=2 ></th>
                 <th class="sort" data-sort="rentalprice">Price</th>
                 <th>Area</th>
                 <th>Address</th>
