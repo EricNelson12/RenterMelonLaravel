@@ -11,38 +11,56 @@
             <tr>
                 <th>Smoking:</th>
                 <td><input type="checkbox" name="smoke" onchange="this.form.submit()"
-                    <?php
-                    if (isset($filters['smoke'])) {
+                    <?php if (isset($filters['smoke']) && $filters['smoke']!== null) {
                         if ($filters['smoke'] == true) {
                             echo 'checked';
                         }
-                    }
-                    ?>
-                /></td>
+                    }?>/></td>
             </tr>
             <tr>
                 <th>Pets:</th>
                 <td><input type="checkbox" name="pets" onchange="this.form.submit()"
-                    <?php
-                    if (isset($filters['pets'])) {
+                    <?php if (isset($filters['pets']) && $filters['pets']!== null) {
                         if ($filters['pets'] == true) {
                             echo 'checked';
                         }
-                    }
-                    ?>
-                /></td>
+                    }?>/></td>
             </tr>
             <tr>
                 <th>Furnished:</th>
                 <td><input type="checkbox" name="furn" onchange="this.form.submit()"
-                    <?php
-                    if (isset($filters['furn'])) {
+                    <?php if (isset($filters['furn']) && $filters['furn']!== null) {
                         if ($filters['furn'] == true) {
                             echo 'checked';
                         }
-                    }
-                    ?>
-                /></td>
+                    }?>/></td>
+            </tr>
+            <tr>
+                <th>No Smoking:</th>
+                <td><input type="checkbox" name="nosmoke" onchange="this.form.submit()"
+                    <?php if (isset($filters['nosmoke']) && $filters['nosmoke']!== null) {
+                        if ($filters['nosmoke'] == true) {
+                            echo 'checked';
+                        }
+                    } ?> /></td>
+            </tr>
+            <tr>
+                <th>No Pets:</th>
+                <td><input type="checkbox" name="nopets" onchange="this.form.submit()"
+                    <?php if (isset($filters['nopets']) && $filters['nopets']!== null) {
+                        if ($filters['nopets'] == true) {
+                            echo 'checked';
+                        }
+                    } ?> /></td>
+            </tr>
+            <tr>
+                <th>Unfurnished:</th>
+                <td><input type="checkbox" name="nofurn" onchange="this.form.submit()"
+                    <?php if (isset($filters['nofurn']) && $filters['nofurn']!== null) {
+                        if ($filters['nofurn'] == true) {
+                            echo 'checked';
+                        }
+                    } ?> /></td>
             </tr>
             <tr>
                 <th>Max Price:</th>
@@ -63,13 +81,13 @@
                 </td>
             </tr>
             {{--
-                <tr>
-                <tr>
+            <tr>
                 <th>Size:</th>
                 <td><input type="range"
                 min="10" max="2000" step="10"
                 name="size"/></td>
             </tr>
+            <tr>
                 <th>Bedrooms:</th>
                 <td>
                     <select name="bedrooms">

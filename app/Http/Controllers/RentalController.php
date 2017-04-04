@@ -97,7 +97,6 @@ class RentalController extends Controller
             ) AS A
         ON (R.rID = A.dontmatter) WHERE ";
 
-
         if (Request::input('smoke') == true){
             $sql .= "smoke = true and ";
             $smoke = true;
@@ -116,14 +115,41 @@ class RentalController extends Controller
         } else {
             $furn = null;
         }
+
+        if (Request::input('nosmoke') == true){
+            $sql .= "smoke = false and ";
+            $nosmoke = true;
+        } else {
+            $nosmoke = null;
+        }
+        if (Request::input('nopets') == true) {
+            $sql .= "pets = false and ";
+            $nopets = true;
+        } else {
+            $nopets = null;
+        }
+        if (Request::input('nofurn') == true) {
+            $sql .= "furn = false and ";
+            $nofurn = true;
+        } else {
+            $nofurn = null;
+        }
         if (Request::input('maxpricewanted') !== null) {
             $maxmpricewanted = Request::input('maxpricewanted');
             $sql .= "price < $maxmpricewanted and ";
         }
 
-        $filters = array('smoke' => $smoke, 'pets' => $pets, 'furn' => $furn, 'maxpricewanted' => $maxmpricewanted);
+        $filters = array (
+            'smoke' => $smoke,
+            'pets' => $pets,
+            'furn' => $furn,
+            'nosmoke' => $nosmoke,
+            'nopets' => $nopets,
+            'nofurn' => $nofurn,
+            'maxpricewanted' => $maxmpricewanted
+        );
 
-        // You can never be too sure of anything.
+        // You can never nobe too sure of anything.
         $sql .= "1 = 1";
         $rentals = DB::select($sql);
 
