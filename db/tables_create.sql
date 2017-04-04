@@ -26,7 +26,7 @@ SCHEMA:
 
 CREATE TABLE rental (
 
-	rID INTEGER AUTO_INCREMENT, 
+	rID INTEGER AUTO_INCREMENT,
 	title VARCHAR(50) NOT NULL,
 	price DECIMAL(7,2) NOT NULL,
 	description VARCHAR(400),
@@ -35,11 +35,11 @@ CREATE TABLE rental (
 	link VARCHAR(200),
 	img VARCHAR(300),
 	pets BOOLEAN,
-	furn BOOLEAN, 
+	furn BOOLEAN,
 	smoke BOOLEAN,
 	bed INTEGER,
 	bath INTEGER,
-	dateAdded DATETIME DEFAULT CURRENT_TIMESTAMP, 
+	dateAdded DATETIME DEFAULT CURRENT_TIMESTAMP,
 	PRIMARY KEY (rID)
 
 
@@ -48,15 +48,15 @@ CREATE TABLE rental (
 );
 
 CREATE TABLE contact (
-	
+
 	rID INTEGER,
 	name VARCHAR(30),
 	phone VARCHAR(15),
 	email VARCHAR(30),
 	PRIMARY KEY (rID, name),
 	FOREIGN KEY (rID) REFERENCES rental(rID)
-		ON DELETE CASCADE 
-		ON UPDATE CASCADE 
+		ON DELETE CASCADE
+		ON UPDATE CASCADE
 
 );
 
@@ -81,7 +81,7 @@ CREATE TABLE users (
 
 CREATE TABLE savedAds (
 
-	id VARCHAR(20),
+	id int(10) unsigned,
 	rID INTEGER,
 	PRIMARY KEY (id,rID),
 	FOREIGN KEY (rID) REFERENCES rental(rID)
@@ -96,7 +96,7 @@ CREATE TABLE savedAds (
 
 CREATE TABLE report (
 
-	id VARCHAR(20),
+	id int(10) unsigned,
 	rID INTEGER,
 	timeAdded DATETIME DEFAULT CURRENT_TIMESTAMP,
 	reportType VARCHAR(25),
@@ -118,3 +118,17 @@ CREATE TABLE `password_resets` (
   KEY `password_resets_email_index` (`email`),
   KEY `password_resets_token_index` (`token`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci
+
+CREATE TABLE userFilters (
+	id int(10) unsigned,
+	pets BOOLEAN,
+	furn BOOLEAN,
+	smoke BOOLEAN,
+	bed INTEGER,
+	bath INTEGER,
+	price DECIMAL(7,2),
+	PRIMARY KEY (id),
+	FOREIGN KEY (id) REFERENCES users(id)
+		ON DELETE CASCADE
+		ON UPDATE CASCADE
+);

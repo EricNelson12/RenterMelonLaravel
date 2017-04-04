@@ -80,15 +80,20 @@
                     onchange="this.form.submit()"/></td>
             </tr>
 
-            <tr>
+            {{-- <tr> 
                 <th>Size:</th>
                 <td><input type="range"
                 min="10" max="2000" step="10"
                 name="size"/></td>
-            </tr>
+            </tr> --}}
             <tr>
                 <th>Bedrooms:</th>
-                <td><select name="bedrooms">
+                <td><select
+                    name="bed"
+                    onchange="this.form.submit()"
+                    <?php if (isset($filters['bed']) && $filters['bed']!== null) { ?>
+                        value="<?= $filters['bed'] ?>"
+                    <?php } ?>>
                 <?php for ($i = 1; $i <= $maxbeds; $i++) { ?>
                     <option value="<?= $i ?>" ><?= $i ?></option>
                 <?php } ?>
@@ -96,7 +101,12 @@
             </tr>
             <tr>
                 <th>Bathrooms:</th>
-                <td><select name="bathrooms">
+                <td><select
+                    name="bath"
+                    onchange="this.form.submit()"
+                    <?php if (isset($filters['bath']) && $filters['bath']!== null) { ?>
+                        value="<?= $filters['bath'] ?>"
+                    <?php } ?>>
                 <?php for ($i = 1; $i <= $maxbaths; $i++) { ?>
                     <option value="<?= $i ?>" ><?= $i ?></option>
                 <?php } ?>

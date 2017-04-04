@@ -116,6 +116,7 @@ class RentalController extends Controller
         ON (R.rID = A.dontmatter) WHERE ";
 
         // I like these conditionals far less than you think
+        // If the checkboxes are different then evaluate them and add SQL
         if (Request::input('smoke') !== Request::input('nosmoke')) {
                 if ( Request::input('smoke') == true ){
                 $sql .= "smoke = true and ";
@@ -129,6 +130,16 @@ class RentalController extends Controller
             } else {
                 $nosmoke = 0;
             }
+        /*
+        * This is where things get strange. The way I thought about it was
+        * if both checkboxes contain the same value then a user does
+        * not make a choice about the type of apartment. In SQL this
+        * would translate to an or condition as in "smoking or non-smoking".
+        * But that would be every rental. "smoking and non-smoking"
+        * would be no rentals. So no SQL is added at all. But the
+        * checkboxes should not change when untouched so values are
+        * still passed to them.
+        */
         } elseif (Request::input('smoke') == Request::input('nosmoke')) {
             if (Request::input('smoke') == true) {
                 $nosmoke = 1;
@@ -139,7 +150,7 @@ class RentalController extends Controller
                 $smoke = 0;
             }
         }
-
+        // Yeah...
         if (Request::input('pets') !== Request::input('nopets')) {
             if (Request::input('pets') == true) {
                 $sql .= "pets = true and ";
@@ -163,7 +174,7 @@ class RentalController extends Controller
                 $pets = 0;
             }
         }
-
+        // It's bad...
         if (Request::input('furn') !== Request::input('nofurn')) {
             if (Request::input('furn') == true) {
                 $sql .= "furn = true and ";
@@ -188,10 +199,11 @@ class RentalController extends Controller
             }
         }
 
-        if (Request::input('maxpricewanted') !== null) {
-            $maxmpricewanted = Request::input('maxpricewanted');
-            $sql .= "price < $maxmpricewanted and ";
-        }
+        $bed = Request::input('bed');
+        $sql .= "bed > $bed and ";
+
+        $bath = Request::input('bath');
+        $sql .= "bath > $bath and ";
 
         if (Request::input('maxpricewanted') !== null) {
             $maxmpricewanted = Request::input('maxpricewanted');
@@ -206,7 +218,8 @@ class RentalController extends Controller
             'nosmoke' => $nosmoke,
             'nopets' => $nopets,
             'nofurn' => $nofurn,
-            'beds' => $beds,
+            'bed' => $bed,
+            'bath' => $bath,
             'maxpricewanted' => $maxmpricewanted,
         );
 
