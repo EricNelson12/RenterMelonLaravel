@@ -70,19 +70,16 @@
                     type="range"
                     min="<?=$minprice?>" max="<?=$maxprice?>"
                     step="1"
-                    value="
-                    <?php
+                    value="<?php
                     // We want the maxprice selected by the user but only if it's selected
                         if ( isset($filters['maxpricewanted']) ) {
                             echo $filters['maxpricewanted'];
                         } else { echo $maxprice; }
-                    ?>
-                    "
+                    ?>"
                     name="maxpricewanted"
-                    onchange="this.form.submit()"/>
-                </td>
+                    onchange="this.form.submit()"/></td>
             </tr>
-            {{--
+
             <tr>
                 <th>Size:</th>
                 <td><input type="range"
@@ -91,24 +88,20 @@
             </tr>
             <tr>
                 <th>Bedrooms:</th>
-                <td>
-                    <select name="bedrooms">
-                        <option value="1" >1</option>
-                        <option value="2" >2</option>
-                        <option value="3" >3</option>
-                        <option value="4" >4</option>
-                    </select>
-                </td>
+                <td><select name="bedrooms">
+                <?php for ($i = 1; $i <= $maxbeds; $i++) { ?>
+                    <option value="<?= $i ?>" ><?= $i ?></option>
+                <?php } ?>
+                </select></td>
             </tr>
             <tr>
                 <th>Bathrooms:</th>
                 <td><select name="bathrooms">
-                    <option value="1" >1</option>
-                    <option value="2" >2</option>
-                    <option value="3" >3</option>
-                    <option value="4" >4</option>
+                <?php for ($i = 1; $i <= $maxbaths; $i++) { ?>
+                    <option value="<?= $i ?>" ><?= $i ?></option>
+                <?php } ?>
                 </select></td>
-            </tr> --}}
+            </tr>
         </table>
         <a id="myBtn" class="btn btn-primary" href="/rentals">Clear</a>
     </form>

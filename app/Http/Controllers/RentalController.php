@@ -36,12 +36,21 @@ class RentalController extends Controller
 
         $rentals = DB::select($sql);
         // Need to get the max and min price somehow. It's not pretty
-        $sorry = DB::select("select MAX(price) as maxprice, MIN(price) as minprice from rental");
+        $sorry = DB::select("select MAX(price) as maxprice, MIN(price) as minprice,
+            MAX(bed) as maxbeds, MAX(bath) as maxbaths from rental");
         foreach ($sorry as $yep) {
             $maxprice = $yep->maxprice;
             $minprice = $yep->minprice;
+            $maxbeds = $yep->maxbeds;
+            $maxbaths = $yep->maxbaths;
         }
-        return view('rentals', ['rentals' => $rentals, 'minprice' => $minprice, 'maxprice' => $maxprice]);
+        return view('rentals', [
+            'rentals' => $rentals,
+            'minprice' => $minprice,
+            'maxprice' => $maxprice,
+            'maxbeds' => $maxbeds,
+            'maxbaths' => $maxbaths,
+        ]);
     }
 
     // Takes the user to a single rental page
@@ -75,14 +84,23 @@ class RentalController extends Controller
 
     //
     function filterAds () {
-        $sorry = DB::select("select MAX(price) as maxprice, MIN(price) as minprice from rental");
+
+        // Get the maximum and minimum prices from the database to be used for the slider that doesn't work
+        $sorry = DB::select("select MAX(price) as maxprice, MIN(price) as minprice,
+            MAX(bed) as maxbeds, MAX(bath) as maxbaths from rental");
         foreach ($sorry as $yep) {
             $maxprice = $yep->maxprice;
             $minprice = $yep->minprice;
+            $maxbeds = $yep->maxbeds;
+            $maxbaths = $yep->maxbaths;
         }
+
+
+
+
         if (Auth::check()){
             $id = Auth::user()->getId();
-        }else{
+        } else {
               $id = 'NULL';
         }
 
@@ -97,7 +115,7 @@ class RentalController extends Controller
             ) AS A
         ON (R.rID = A.dontmatter) WHERE ";
 
-        // I like these conditionals less than you do 
+        // I like these conditionals far less than you think
         if (Request::input('smoke') !== Request::input('nosmoke')) {
                 if ( Request::input('smoke') == true ){
                 $sql .= "smoke = true and ";
@@ -175,6 +193,12 @@ class RentalController extends Controller
             $sql .= "price < $maxmpricewanted and ";
         }
 
+        if (Request::input('maxpricewanted') !== null) {
+            $maxmpricewanted = Request::input('maxpricewanted');
+            $sql .= "price < $maxmpricewanted and ";
+        }
+
+        // Create the array of filters
         $filters = array (
             'smoke' => $smoke,
             'pets' => $pets,
@@ -190,7 +214,15 @@ class RentalController extends Controller
         $sql .= "1 = 1";
         $rentals = DB::select($sql);
 
-        return view('rentals', ['rentals' => $rentals, 'filters' => $filters, 'minprice' => $minprice, 'maxprice' => $maxprice, 'sql' => $sql]);
+        return view('rentals', [
+            'rentals' => $rentals,
+            'filters' => $filters,
+            'minprice' => $minprice,
+            'maxprice' => $maxprice,
+            'maxbeds' => $maxbeds,
+            'maxbaths' => $maxbaths,
+            'sql' => $sql
+        ]);
     }
 
     function saveAd($rID){
