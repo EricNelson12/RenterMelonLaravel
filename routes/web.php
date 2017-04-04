@@ -27,7 +27,7 @@ Route::get('rental/{id}', 'RentalController@showRental');
 
 Route::group(['prefix'=>'rentals/filter'], function () {
     if (Request::input('savefilters') == true) {
-        Route::post('/' ,'RentalController@saveFilters');
+        Route::post('/' ,'FilterController@saveFilters');
     } else {
         Route::post('/' ,'RentalController@filterAds');
     }

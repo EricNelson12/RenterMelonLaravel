@@ -206,8 +206,8 @@ class RentalController extends Controller
         $sql .= "bath > $bath and ";
 
         if (Request::input('maxpricewanted') !== null) {
-            $maxmpricewanted = Request::input('maxpricewanted');
-            $sql .= "price < $maxmpricewanted and ";
+            $maxpricewanted = Request::input('maxpricewanted');
+            $sql .= "price < $maxpricewanted and ";
         }
 
         // Create the array of filters
@@ -220,7 +220,7 @@ class RentalController extends Controller
             'nofurn' => $nofurn,
             'bed' => $bed,
             'bath' => $bath,
-            'maxpricewanted' => $maxmpricewanted,
+            'maxpricewanted' => $maxpricewanted,
         );
 
         // You can never nobe too sure of anything.
