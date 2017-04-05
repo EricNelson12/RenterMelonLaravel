@@ -88,4 +88,7 @@
             </div>
         </div>
     @endif
+    @if (Auth::user()->isAdmin())
+        <a class="btn btn-primary" href="/admin/remove/<?= $rental->rID ?>">Remove This Ad</a>
+    @endif
 @endsection

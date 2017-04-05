@@ -87,6 +87,14 @@ class RentalController extends Controller
         return view('admin.reported', ['reported' => $reported]);
     }
 
+    function removeAd ($rID) {
+        // $rID = Request::input('rID');
+        DB::table('report')->where('rID','=',$rID)->delete();
+        DB::table('savedads')->where('rID','=',$rID)->delete();
+        DB::table('rental')->where('rID','=',$rID)->delete();
+        return view('admin.dashboard');
+    }
+
     //
     function filterAds () {
 
