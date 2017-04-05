@@ -98,6 +98,7 @@ class RentalController extends Controller
         // $rID = Request::input('rID');
         DB::table('report')->where('rID','=',$rID)->delete();
         DB::table('savedads')->where('rID','=',$rID)->delete();
+        DB::table('history')->where('rID','=',$rID)->delete();
         DB::table('rental')->where('rID','=',$rID)->delete();
         return view('admin.dashboard');
     }
