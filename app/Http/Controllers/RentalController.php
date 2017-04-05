@@ -441,5 +441,15 @@ class RentalController extends Controller
       return redirect('/rentals');
     }
 
-
+    function viewHistory () {
+        $id = Auth::user()->getId();
+        $sql = "
+            SELECT R.rID as number, title, ts
+            FROM history as H, rental as R
+            WHERE H.rID = R.rID and id = $id
+            ORDER BY ts DESC
+        ";
+        $rentals = DB::select($sql);
+        return view('history', ['rentals' => $rentals]);
+    }
 }

@@ -59,3 +59,5 @@ Route::get('/home', 'HomeController@index');
 Route::get('/saveAd/{rID}', 'RentalController@saveAd');
 
 Route::get('/unsaveAd/{rID}', 'RentalController@unsaveAd');
+
+Route::get('history', 'RentalController@viewHistory');

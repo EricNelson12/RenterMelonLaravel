@@ -9,6 +9,7 @@
 
                 <div class="panel-body">
                     <a id="myBtn" class="btn btn-primary" href="/rentals?clearmyfilters=true">Clear My Filters</a>
+                    <a id="myBtn" class="btn btn-primary" href="/history">History</a>
                 </div>
             </div>
         </div>
