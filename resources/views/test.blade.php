@@ -81,7 +81,7 @@
                 <div class="title m-b-md">
                     RenterMelon
                 </div>
-                <?php print_r($rentals); ?>
+                <?php print_r($filters); ?>
                 <div class="links">
                     <a href="https://laravel.com/docs">Documentation</a>
                     <a href="https://laracasts.com">Laracasts</a>

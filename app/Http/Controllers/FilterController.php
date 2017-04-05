@@ -55,4 +55,8 @@ class FilterController extends Controller
 
         return redirect ('rentals');
     }
+
+    function removefilters() {
+
+    }
 }

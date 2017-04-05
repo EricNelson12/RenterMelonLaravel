@@ -16,7 +16,7 @@
                         if ($filters['smoke'] == true) {
                             echo 'checked';
                         }
-                    }?>/></td>
+                    } ?> /></td>
             </tr>
             <tr>
                 <th>No Smoking:</th>
@@ -34,7 +34,7 @@
                         if ($filters['pets'] == true) {
                             echo 'checked';
                         }
-                    }?>/></td>
+                    } ?> /></td>
             </tr>
             <tr>
                 <th>No Pets:</th>
@@ -114,7 +114,7 @@
         @if (Auth::check())
             <input type="submit" id="save" class="btn btn-primary" name="savefilters" value="Save These Filters" />
         @endif
-        <a id="myBtn" class="btn btn-primary" href="/rentals">Clear</a>
+        <a id="myBtn" class="btn btn-primary" href="/rentals?clear=true">Clear</a>
     </form>
 
 

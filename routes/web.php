@@ -23,7 +23,8 @@ Route::get('/test', function () {
 // routes for returning rental views
 Route::get('rentals', 'RentalController@showRentals');
 Route::get('rental/{id}', 'RentalController@showRental');
-
+Route::get('rentals?clear=true', 'RentalController@showRentals');
+Route::get('rentals?clearmyfilters=true', 'FilterController@removefilters');
 
 Route::group(['prefix'=>'rentals/filter'], function () {
     if (Request::input('savefilters') == true) {

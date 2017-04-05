@@ -8,7 +8,7 @@
                 <div class="panel-heading">Dashboard</div>
 
                 <div class="panel-body">
-                    You are logged in!
+                    <a id="myBtn" class="btn btn-primary" href="/rentals?clearmyfilters=true">Clear</a>
                 </div>
             </div>
         </div>
