@@ -60,7 +60,14 @@ class RentalController extends Controller
 
     // Takes the user to a single rental page
     function showRental ($rID) {
-
+        if (Auth::check()) {
+            $id = Auth::user()->getId();
+            DB::insert(
+                "INSERT INTO history(id, rID) values($id, $rID)
+                ON DUPLICATE KEY
+                UPDATE ts = now()"
+            );
+        }
          $rentals = DB::select("select *, (611 + 22*furn + -156*pets + -156*smoke + 282*bed + 282*bath) as guess from rental where rID = $rID");
          foreach($rentals as $rent){
             $rental = $rent;
@@ -433,5 +440,6 @@ class RentalController extends Controller
       DB::table('savedads')->where('id','=',$id)->where('rID', '=', $rID)->delete();
       return redirect('/rentals');
     }
+
 
 }
