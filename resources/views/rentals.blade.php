@@ -114,7 +114,7 @@
         @if (Auth::check())
             <input type="submit" id="save" class="btn btn-primary" name="savefilters" value="Save These Filters" />
         @endif
-        <a id="myBtn" class="btn btn-primary" href="/rentals?clear=true">Clear</a>
+        <a id="myBtn" class="btn btn-primary" href="/rentals?clearthesefilters=true">Clear</a>
     </form>
 
 

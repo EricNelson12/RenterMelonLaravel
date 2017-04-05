@@ -52,11 +52,12 @@ class FilterController extends Controller
             bed = $bed, bath = $bath, price = $maxpricewanted
             "
         );
-
         return redirect ('rentals');
     }
 
     function removefilters() {
-
+        $id = Auth::user()->getId();
+        DB::table("userfilters")->where('id','=',$id)->delete();
+        return redirect ('rentals');
     }
 }

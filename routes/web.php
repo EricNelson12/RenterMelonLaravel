@@ -23,8 +23,10 @@ Route::get('/test', function () {
 // routes for returning rental views
 Route::get('rentals', 'RentalController@showRentals');
 Route::get('rental/{id}', 'RentalController@showRental');
-Route::get('rentals?clear=true', 'RentalController@showRentals');
-Route::get('rentals?clearmyfilters=true', 'FilterController@removefilters');
+// These routes are incredibly poor practice but they work so I say
+// don't pull them apart because everything will break.
+Route::get('rentals?clearthesefilters=true', 'RentalController@showRentals');
+Route::get('rentals/clearmine', 'FilterController@removefilters');
 
 Route::group(['prefix'=>'rentals/filter'], function () {
     if (Request::input('savefilters') == true) {

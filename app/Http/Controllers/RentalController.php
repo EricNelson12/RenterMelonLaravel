@@ -14,15 +14,18 @@ class RentalController extends Controller
 
         // $rentals = DB::table('rental')->get();
 
-
-        if (Auth::check()){
+        if (Auth::check()) {
             $id = Auth::user()->getId();
-            $checkid = DB::select("SELECT id from userfilters where id = $id");
-            return $this->showMyFilteredAds($id);
+            $checkid = DB::select("select id from userfilters where id = $id");
+            // Depending on the situation I get inconsistent data types from $checkid
+            // So we get this unreadable garbage and I'm sorry but it always works
+            foreach ($checkid as $cid){$cid2 = $cid->id;}
+            if ( Request::input('clearthesefilters')!=true && isset($cid2) && $id == $cid2 )
+                // return view ('test', ['test'=>$cid]);
+                return $this->showMyFilteredAds($id);
         } else {
             $id = 'NULL';
         }
-
 
         $sql = "SELECT *
         FROM rental AS R

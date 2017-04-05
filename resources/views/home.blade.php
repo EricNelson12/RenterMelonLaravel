@@ -8,7 +8,7 @@
                 <div class="panel-heading">Dashboard</div>
 
                 <div class="panel-body">
-                    <a id="myBtn" class="btn btn-primary" href="/rentals?clearmyfilters=true">Clear</a>
+                    <a id="myBtn" class="btn btn-primary" href="/rentals?clearmyfilters=true">Clear My Filters</a>
                 </div>
             </div>
         </div>
