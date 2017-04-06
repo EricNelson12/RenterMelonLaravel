@@ -187,7 +187,11 @@
                     <input type="radio" name="reportType" value="Other"/>
                     <label>Other scam</label><br />
                     <h4>Description</h4>
-                    <textarea name="desc"></textarea><br /><br />
+                    <textarea name="desc"></textarea><br />
+                    <br />
+                    {{-- IMPORTANT: WE NEED A PROPER SITE KEY FOR THIS --}}
+                    <div class="g-recaptcha" data-sitekey="SITE_KEY_GOES_HERE"></div>
+                    <br />
                     <input type="submit" id="myBtn" class="btn btn-primary" value="Submit report"/>
                 </form>
             </div>
@@ -220,7 +224,7 @@
 
   }
   </script>
-
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD5VuOQYcpsyakc9w43OPVe70v5Llb1mYw&callback=myMap"></script>
   <script src="{{ asset('js/app.js') }}"></script>
       <script src="{{ url('http://listjs.com/assets/javascripts/list.min.js') }}"></script>
