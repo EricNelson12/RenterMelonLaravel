@@ -29,7 +29,7 @@ CREATE TABLE rental (
 	rID INTEGER AUTO_INCREMENT,
 	title VARCHAR(50) NOT NULL,
 	price DECIMAL(7,2) NOT NULL,
-	description VARCHAR(400),
+	description TEXT,
 	area VARCHAR(20),
 	address VARCHAR(70),
 	link VARCHAR(200),
@@ -39,6 +39,8 @@ CREATE TABLE rental (
 	smoke BOOLEAN,
 	bed INTEGER,
 	bath INTEGER,
+    lat DECIMAL(9,6),
+    lng DECIMAL(9,6),
 	dateAdded DATETIME DEFAULT CURRENT_TIMESTAMP,
 	PRIMARY KEY (rID)
 
@@ -117,7 +119,7 @@ CREATE TABLE `password_resets` (
   `created_at` timestamp NULL DEFAULT NULL,
   KEY `password_resets_email_index` (`email`),
   KEY `password_resets_token_index` (`token`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE userFilters (
 	id int(10) unsigned,
