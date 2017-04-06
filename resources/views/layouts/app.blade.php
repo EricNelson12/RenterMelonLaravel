@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -34,9 +34,10 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-
+                    <img src="http://i67.tinypic.com/110c9w1.jpg" width="50px" style="position:absolute;top:0px;left:0px;">
                     <!-- Branding Image -->
                     <a class="navbar-brand" href="{{ url('/') }}">
+
                         {{ config('app.name', 'RenterMelon') }}
                     </a>
                 </div>

@@ -17,6 +17,14 @@ display: inline;
   height: 5em;
 }
 
+.navbar-brand{
+	color: #e9225a!important;
+}
+
+a{
+	color: #e9225a!important;
+}
+
 #maintable {
 	width: 70%;
 	margin-left: auto;
@@ -41,13 +49,26 @@ th.sort:hover {
 td {
 	padding: 1em 2em 1em 2em;
 	text-align: left;
+	color: #000;
 }
 tr {
-	border-bottom: 1px solid #d1d1d1;
+	border-bottom: 1px solid #ffa8cb;
 }
+
+tbody tr:nth-child(odd) {
+   background-color: #fff!important;
+}
+
+#maintable th {
+	background-color: #ffa8cb;
+	color: white;
+}
+
+
 
 body {
 	font-family: Arial;
+	background: #fff5fb!important;
 }
 
 #searchbar {
@@ -60,12 +81,34 @@ body {
 	float: left;
 	margin-left: 0.5em;
 	padding: .5em;
-	border: 1px solid #d1d1d1;
+	border: 1px solid #ffa8cb;
+	background-color: #fff;
+	border-radius: 4px;
 }
 
 #filter * {
 	border: none;
 }
+
+#ok {
+	background-color: #ffa8cb;
+}
+
+span.good {
+	background-color: #71f1a9!important;
+	border-radius: 3px;
+	padding:2px;
+}
+
+span.good:hover{
+	
+}
+
+.btn-primary {
+	color: #FFF!important;
+	background-color: #ffa8cb;
+
+	}
 
 /* The Modal (background) */
 .modal {

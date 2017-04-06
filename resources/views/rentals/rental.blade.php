@@ -34,6 +34,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
+                    <img src="http://i67.tinypic.com/110c9w1.jpg" width="50px" style="position:absolute;top:0px;left:0px;">
 
                     <!-- Branding Image -->
                     <a class="navbar-brand" href="{{ url('/') }}">
