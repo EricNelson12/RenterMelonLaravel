@@ -442,6 +442,19 @@ class RentalController extends Controller
       return redirect('/rentals');
     }
 
+    function viewMyAds () {
+        if (Auth::check())
+            $id = Auth::user()->getId();
+
+        $sql = "
+            SELECT S.rID as number, title
+            FROM savedads as S, rental as R
+            WHERE R.rID = S.rID and id = $id
+            ";
+        $rentals = DB::select($sql);
+        return view('myads', ['rentals' => $rentals]);
+    }
+
     function viewHistory () {
         $id = Auth::user()->getId();
         $sql = "

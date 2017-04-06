@@ -10,11 +10,11 @@
             @foreach ($rentals as $rental)
                 <tr>
                     <td><?= $rental->number ?></td>
-                    <td><?= $rental->ts ?></td>
+                    <td><?= 1 ?></td>
                 </tr>
                 <tr>
-                    <td colspan=2>
-                        <a href="/rental/<?=$rental->number?>"><?= $rental->title ?></a>
+                    <td colspan=2><a href="/rental/<?=$rental->number?>">
+                        <?= $rental->title ?></a>
                     </td>
                 </tr>
             @endforeach
