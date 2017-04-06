@@ -3,10 +3,12 @@
 
     {{-- TODO: Make miltiple filters work --}}
 
+    <div id="mysidenav" class="sidenav">
     <form id="filter" method="post" action="/rentals/filter" >
 
         {!! csrf_field() !!}
         <h4>Filter</h4>
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
         <table>
             {{-- For each filter we want to evaluate whether the user checked it at all. --}}
             <tr>
@@ -116,12 +118,15 @@
         @endif
         <a id="myBtn" class="btn btn-primary" href="/rentals?clearthesefilters=true">Clear</a>
     </form>
-
+    </div>
+    
 
 
     <div id="rentals">
         <table id="maintable">
+            
             <input class="search form-control" id="searchbar" placeholder="Search" />
+            <span class="btn btn-primary"  id="filterbtn" onclick="openNav()">Filters</span>
             <tr>
                 <th colspan=2 ></th>
                 <th class="sort" data-sort="rentalprice">Price</th>

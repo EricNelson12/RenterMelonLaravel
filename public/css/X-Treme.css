@@ -59,11 +59,19 @@ tbody tr:nth-child(odd) {
    background-color: #fff!important;
 }
 
+
+th {
+	color: #e9225a;
+}
+
 #maintable th {
-	background-color: #ffa8cb;
+	background-color: #e9225a;
 	color: white;
 }
 
+p {
+	color: #000;
+}
 
 
 body {
@@ -75,10 +83,11 @@ body {
 	margin: 1em auto 2em auto;
 	width: 60%;
 	max-width: 50em;
+	position: relative;
+	top: 63px;
 }
 
 #filter {
-	float: left;
 	margin-left: 0.5em;
 	padding: .5em;
 	border: 1px solid #ffa8cb;
@@ -100,15 +109,31 @@ span.good {
 	padding:2px;
 }
 
-span.good:hover{
-	
+span.ok {
+	background-color: #ffdd96!important;
+	border-radius: 3px;
+	padding:2px;
 }
+
+span.bad {
+	background-color: #ff9696!important;
+	border-radius: 3px;
+	padding:2px;
+}
+
+
 
 .btn-primary {
 	color: #FFF!important;
-	background-color: #ffa8cb;
+	background-color: #e9225a;
+	border-color: #be1847;
 
 	}
+
+.btn-primary:hover{
+	background-color: #be1847;
+	border-color: #be1847;
+}
 
 /* The Modal (background) */
 .modal {
@@ -134,15 +159,18 @@ span.good:hover{
 }
 
 /* The Close Button */
-.close {
+.closebtn {
    color: #aaa;
-   float: right;
    font-size: 28px;
    font-weight: bold;
+   margin-left: 70%;
+   position: relative;
+   top: -5px;
+
 }
 
-.close:hover,
-.close:focus {
+.closebtn:hover,
+.closebtn:focus {
    color: black;
    text-decoration: none;
    cursor: pointer;
@@ -152,3 +180,45 @@ textarea {
 	width: 400px;
 	height: 300px;
 }
+
+
+.sidenav {
+    height: 100%; /* 100% Full-height */
+    width: 0; /* 0 width - change this with JavaScript */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Stay on top */
+    top: 0;
+    left: 0;
+    overflow-x: hidden; /* Disable horizontal scroll */
+    padding-top: 60px; /* Place content 60px from the top */
+    transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+}
+
+/* The navigation menu links */
+.sidenav a {
+
+    transition: 0.3s
+}
+
+#filterbtn {
+	margin-left: 1em;
+	float: left;
+	margin-left: 15%;
+	margin-bottom: 1em;
+}
+
+#maintable{
+	clear:both;
+}
+
+.sidenav h4{
+	float: left;
+}
+
+.sidnav table{
+	clear:both;
+}
+
+
+
+

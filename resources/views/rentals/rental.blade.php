@@ -145,21 +145,9 @@
             <th>Date added</th>
             <td><?=$rental->dateAdded?></td>
         </tr>
-    </table>
-    <?php
-        if (strcmp($rental->img, "no image") != 0)
-             echo "<img src=\"".$rental->img."\" alt=\"rental image\" width=\"450px\">";
-         else
-            echo "no image available";
-
-     ?>
-    <p id="rentaldesc" style="clear:both;">
-        <?=$rental->description?>
-
-    </p>
-
-
-    {{--
+        <tr>
+        <td colspan="2" style="text-align: right">
+            {{--
         If a logged in user views this page they got the option to report below.
         A modal form will pop up.
     --}}
@@ -172,7 +160,7 @@
          ?>
 
         {{-- This is a modal form. I would not recommend changing the CSS for it --}}
-        <div id="myModal" class="modal">
+        <div id="myModal" class="modal" style="text-align: left;">
             <div class="modal-content">
                 <span class="close">&times;</span>
                 <form method="post" action="/report">
@@ -202,11 +190,28 @@
 
 
     @endif
+        </td>
+        </tr>
+    </table>
+    <?php
+        if (strcmp($rental->img, "no image") != 0)
+             echo "<img src=\"".$rental->img."\" alt=\"rental image\" width=\"450px\">";
+         else
+            echo "no image available";
+
+     ?>
+    <p id="rentaldesc" style="clear:both;">
+        <?=$rental->description?>
+
+    </p>
+
+
+
     @if (Auth::check() && Auth::user()->isAdmin())
         <a class="btn btn-primary" href="/admin/remove/<?= $rental->rID ?>">Remove This Ad</a>
     @endif
   </div>
-  <div id="googleMap" style="width:100%;height:400px;"></div>
+  <div id="googleMap" style="width:60%;margin:auto;margin-top:5em;height:400px;"></div>
   <!-- Scripts -->
   <script>
   function myMap() {
