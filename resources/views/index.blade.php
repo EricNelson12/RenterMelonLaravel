@@ -29,7 +29,7 @@
     var marker<?=$rental->rID?> = new google.maps.Marker({
             position: myLatLng,
             map: map,
-            title: "<?= $rental->address ?> $<?= $rental->price ?> <?= $rental->price ?> ",
+            title: "<?= $rental->address ?> $<?= $rental->price ?> ",
             url: "/rental/<?=$rental->rID?>",
           });
 
