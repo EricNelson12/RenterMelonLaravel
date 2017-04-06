@@ -55,7 +55,7 @@ CREATE TABLE contact (
 	name VARCHAR(30),
 	phone VARCHAR(15),
 	email VARCHAR(30),
-	PRIMARY KEY (rID, name),
+	PRIMARY KEY (rID),
 	FOREIGN KEY (rID) REFERENCES rental(rID)
 		ON DELETE CASCADE
 		ON UPDATE CASCADE
@@ -81,7 +81,7 @@ CREATE TABLE users (
 */
 
 
-CREATE TABLE savedAds (
+CREATE TABLE savedads (
 
 	id int(10) unsigned,
 	rID INTEGER,
@@ -121,7 +121,7 @@ CREATE TABLE `password_resets` (
   KEY `password_resets_token_index` (`token`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE userFilters (
+CREATE TABLE userfilters (
 	id int(10) unsigned,
 	pets BOOLEAN,
 	furn BOOLEAN,

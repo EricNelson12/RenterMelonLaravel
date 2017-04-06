@@ -14,7 +14,7 @@
 
     var mapProp= {
         center:new google.maps.LatLng(49.886301, -119.470693),
-        zoom:10,
+        zoom:12,
     };
 
 
