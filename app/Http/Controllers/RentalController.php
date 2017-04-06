@@ -469,7 +469,7 @@ class RentalController extends Controller
 
     function getMainMapPlaces () {
       $rentals = DB::select("
-        SELECT lat, lng, address, rID
+        SELECT lat, lng, address, rID, price, description
         FROM rental
       ");
       return view('index', ['rentals' => $rentals]);

@@ -179,7 +179,7 @@
                     <textarea name="desc"></textarea><br />
                     <br />
                     {{-- IMPORTANT: WE NEED A PROPER SITE KEY FOR THIS --}}
-                    <div class="g-recaptcha" data-sitekey="SITE_KEY_GOES_HERE"></div>
+                    <div class="g-recaptcha" data-sitekey="6LdG7xsUAAAAAEGu_pjwe2v7lLaAE9Q7m-_jVQnO"></div>
                     <br />
                     <input type="submit" id="myBtn" class="btn btn-primary" value="Submit report"/>
                 </form>
