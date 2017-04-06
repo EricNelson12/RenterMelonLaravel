@@ -453,4 +453,12 @@ class RentalController extends Controller
         $rentals = DB::select($sql);
         return view('history', ['rentals' => $rentals]);
     }
+
+    function getMainMapPlaces () {
+      $rentals = DB::select("
+        SELECT lat, lng, address, rID
+        FROM rental
+      ");
+      return view('index', ['rentals' => $rentals]);
+    }
 }

@@ -11,10 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
-
+Route::get('/', 'RentalController@getMainMapPlaces');
 
 Route::get('/test', function () {
     return view('test');
